@@ -1,0 +1,1878 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="kominfo.jpg" type="image/png" />
+    <title>KOMINFO PMKN 2025 - Upload Portal</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          text-shadow:
+            0 0 10px rgba(26, 167, 226, 0.5),
+            0 0 20px rgba(26, 167, 226, 0.3);
+        }
+        50% {
+          text-shadow:
+            0 0 20px rgba(26, 167, 226, 0.8),
+            0 0 40px rgba(26, 167, 226, 0.5);
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(-45deg, #0a0e27, #1a1a3e, #16213e, #0f3460);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .loading-screen.hidden {
+        animation: fadeOut 0.8s ease-out forwards;
+        pointer-events: none;
+      }
+
+      .loading-logo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid rgba(26, 167, 226, 0.5);
+        box-shadow: 0 0 30px rgba(26, 167, 226, 0.5);
+        animation:
+          zoomIn 0.8s ease-out,
+          spin 3s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(26, 167, 226, 0.1);
+      }
+
+      .loading-logo img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .loading-text {
+        font-size: 24px;
+        font-weight: 800;
+        color: #1ba7e2;
+        letter-spacing: 2px;
+        animation: glow 3s ease-in-out infinite;
+        text-align: center;
+      }
+
+      .loading-dots {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .loading-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #00d4ff;
+        animation: pulse 1.4s infinite;
+      }
+
+      .loading-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .loading-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(-45deg, #0a0e27, #1a1a3e, #16213e, #0f3460);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        min-height: 100vh;
+        overflow-x: hidden;
+        color: #fff;
+        padding-top: 80px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background: rgba(15, 30, 50, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 8px 32px 0 rgba(26, 167, 226, 0.2);
+        border-bottom: 2px solid rgba(26, 167, 226, 0.3);
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        cursor: pointer;
+        animation: glow 3s ease-in-out infinite;
+        color: #1ba7e2;
+      }
+
+      .logo {
+        height: 55px;
+        width: 55px;
+        margin-right: 15px;
+        border-radius: 50%;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 0 20px rgba(26, 167, 226, 0.4);
+        border: 2px solid rgba(26, 167, 226, 0.5);
+        object-fit: cover;
+      }
+
+      .logo:hover {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 0 40px rgba(26, 167, 226, 0.8);
+        border-color: rgba(26, 167, 226, 0.8);
+      }
+
+      .header-left:hover {
+        color: #00d4ff;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        background: none;
+        border: none;
+        padding: 10px;
+      }
+
+      .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: #1ba7e2;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      .menu {
+        display: flex;
+        list-style: none;
+        gap: 10px;
+      }
+
+      .menu a {
+        color: #e0e0e0;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+
+      .menu a:hover {
+        color: #00d4ff;
+      }
+
+      .menu a.active {
+        color: #00d4ff;
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: flex;
+        }
+
+        .menu {
+          position: absolute;
+          top: 70px;
+          right: 20px;
+          flex-direction: column;
+          background: linear-gradient(
+            135deg,
+            rgba(15, 30, 50, 0.98),
+            rgba(15, 40, 70, 0.95)
+          );
+          border: 2px solid rgba(26, 167, 226, 0.4);
+          border-radius: 12px;
+          padding: 8px 0;
+          min-width: 220px;
+          box-shadow: 0 12px 40px rgba(26, 167, 226, 0.3);
+          backdrop-filter: blur(10px);
+          animation: floatIn 0.3s ease-out;
+          display: none;
+          gap: 0;
+          z-index: 999;
+        }
+
+        .menu.active {
+          display: flex;
+        }
+
+        .menu li {
+          border-bottom: 1px solid rgba(26, 167, 226, 0.2);
+          transition: all 0.2s ease;
+        }
+
+        .menu li:last-child {
+          border-bottom: none;
+        }
+
+        .menu li:hover {
+          background: rgba(26, 167, 226, 0.1);
+        }
+
+        .menu a {
+          display: block;
+          padding: 14px 20px;
+          border-radius: 0;
+          width: 100%;
+          text-align: left;
+          font-size: 15px;
+          transition: color 0.2s ease;
+          color: #e0e0e0;
+        }
+
+        .menu a:hover {
+          color: #00d4ff;
+        }
+
+        .menu a.active {
+          color: #00d4ff;
+        }
+
+        .header {
+          padding: 15px 20px;
+        }
+
+        .header-left {
+          font-size: 20px;
+        }
+
+        body {
+          padding-top: 70px;
+        }
+      }
+
+      .welcome-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 80px);
+        text-align: center;
+        padding: 40px 20px;
+        animation: floatIn 0.8s ease-out;
+      }
+
+      .welcome-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        max-width: 1000px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .coordinator-photo-left {
+        width: 220px;
+        height: 220px;
+        border-radius: 20px;
+        object-fit: cover;
+        border: 3px solid rgba(26, 167, 226, 0.5);
+        box-shadow: 0 8px 32px rgba(26, 167, 226, 0.2);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: floatIn 0.8s ease-out 0.2s both;
+      }
+
+      .coordinator-photo-left:hover {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 16px 48px rgba(26, 167, 226, 0.4);
+        transform: scale(1.08) rotate(-2deg);
+      }
+
+      .welcome-content {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .welcome-title {
+        font-size: 72px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation:
+          glow 4s ease-in-out infinite,
+          gradientShift 6s ease infinite;
+        letter-spacing: 2px;
+        text-shadow: 0 0 30px rgba(26, 167, 226, 0.3);
+      }
+
+      .welcome-subtitle {
+        font-size: 24px;
+        color: #b0e0e6;
+        margin-bottom: 50px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        animation: floatIn 1s ease-out 0.2s both;
+      }
+
+      .welcome-description {
+        font-size: 18px;
+        color: #a8a8a8;
+        margin-bottom: 60px;
+        max-width: 700px;
+        line-height: 1.8;
+        animation: floatIn 1s ease-out 0.4s both;
+      }
+
+      .coordinator-section {
+        margin-top: 60px;
+        animation: floatIn 1s ease-out 0.6s both;
+      }
+
+      .coordinator-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.15),
+          rgba(0, 212, 255, 0.08)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.4);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 400px;
+        margin: 0 auto;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .coordinator-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(26, 167, 226, 0.3);
+        border-color: rgba(0, 212, 255, 0.7);
+      }
+
+      .coordinator-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 15px;
+        object-fit: cover;
+        border: 3px solid rgba(26, 167, 226, 0.5);
+        box-shadow: 0 8px 24px rgba(26, 167, 226, 0.2);
+        transition: all 0.4s ease;
+      }
+
+      .coordinator-card:hover .coordinator-photo {
+        border-color: rgba(0, 212, 255, 0.8);
+        box-shadow: 0 12px 36px rgba(26, 167, 226, 0.4);
+        transform: scale(1.05);
+      }
+
+      .coordinator-name {
+        font-size: 26px;
+        font-weight: 800;
+        color: #00d4ff;
+        text-align: center;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+      }
+
+      .coordinator-position {
+        font-size: 16px;
+        color: #1ba7e2;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-align: center;
+      }
+
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        justify-content: center;
+        max-width: 1200px;
+        width: 100%;
+        margin-top: 30px;
+        animation: floatIn 1s ease-out 0.6s both;
+      }
+
+      .button {
+        padding: 20px 30px;
+        border: 2px solid rgba(26, 167, 226, 0.5);
+        border-radius: 15px;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.1),
+          rgba(0, 212, 255, 0.05)
+        );
+        color: #1ba7e2;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 8px 32px 0 rgba(26, 167, 226, 0.1);
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(26, 167, 226, 0.3);
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.6s,
+          height 0.6s;
+        z-index: -1;
+      }
+
+      .button:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .button:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(26, 167, 226, 0.3);
+        border-color: rgba(0, 212, 255, 0.8);
+        color: #00d4ff;
+      }
+
+      .button:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .floating-element {
+        position: fixed;
+        border-radius: 50%;
+        opacity: 0.05;
+        pointer-events: none;
+        animation: float 8s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        50% {
+          transform: translateY(-30px) translateX(20px);
+        }
+      }
+
+      .video-section {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+        animation: floatIn 0.8s ease-out;
+      }
+
+      .video-section h2 {
+        font-size: 36px;
+        font-weight: 900;
+        margin-bottom: 30px;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+
+      .video-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(15, 30, 50, 0.8);
+        border: 2px solid rgba(26, 167, 226, 0.4);
+        box-shadow: 0 20px 60px rgba(26, 167, 226, 0.2);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+        animation: floatIn 1s ease-out 0.3s both;
+      }
+
+      .video-container:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 80px rgba(26, 167, 226, 0.4);
+        border-color: rgba(0, 212, 255, 0.6);
+      }
+
+      .video-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+      }
+
+      .video-container:hover .video-thumbnail {
+        filter: brightness(0.7);
+      }
+
+      .play-button {
+        width: 80px;
+        height: 80px;
+        background: rgba(26, 167, 226, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 10px 40px rgba(26, 167, 226, 0.5);
+        border: 3px solid #00d4ff;
+      }
+
+      .video-container:hover .play-button {
+        width: 100px;
+        height: 100px;
+        background: rgba(0, 212, 255, 0.95);
+        box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
+      }
+
+      .play-button::after {
+        content: "▶";
+        color: #fff;
+        font-size: 35px;
+        margin-left: 5px;
+      }
+
+      .video-description {
+        margin-top: 25px;
+        padding: 20px;
+        background: rgba(26, 167, 226, 0.08);
+        border-left: 4px solid rgba(26, 167, 226, 0.5);
+        border-radius: 10px;
+        font-size: 16px;
+        color: #b0e0e6;
+        line-height: 1.6;
+        animation: floatIn 1s ease-out 0.6s both;
+      }
+
+      .quick-links-section {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 0 20px;
+      }
+
+      .quick-links-section h2 {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 25px;
+        color: #1ba7e2;
+        text-align: center;
+      }
+
+      .quick-links-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .quick-link-item {
+        display: block;
+      }
+
+      /* Plain text-only quick links: hide icons and descriptions, simplify link styling */
+      .quick-link-icon,
+      .quick-link-description {
+        display: none !important;
+      }
+
+      .quick-link-item a {
+        display: block;
+        padding: 6px 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        text-decoration: none;
+        color: #b0e0e6;
+        transition: color 0.18s ease;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .quick-link-item a:hover {
+        color: #00d4ff;
+        text-decoration: underline;
+      }
+
+      .quick-link-text {
+        display: block;
+      }
+
+      .quick-link-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: inherit;
+      }
+
+      .contact-info-section {
+        max-width: 800px;
+        margin: 100px auto;
+        padding: 40px 20px;
+        border-top: 1px solid rgba(26, 167, 226, 0.2);
+        text-align: center;
+      }
+
+      .contact-info-section h3 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1ba7e2;
+        margin-bottom: 20px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 15px;
+        color: #b0e0e6;
+        font-size: 15px;
+      }
+
+      .contact-icon {
+        font-size: 20px;
+      }
+
+      .contact-item a {
+        color: #00d4ff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item a:hover {
+        text-decoration: underline;
+      }
+
+      /* Pamphlet Modal Styles */
+      .pamphlet-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      .pamphlet-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .pamphlet-content {
+        background: transparent;
+        border: none;
+        border-radius: 20px;
+        padding: 0;
+        max-width: 700px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 80px rgba(26, 167, 226, 0.4);
+        animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+      }
+
+      .pamphlet-brochure-image {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        display: block;
+        box-shadow: 0 15px 50px rgba(26, 167, 226, 0.3);
+        border: 3px solid rgba(26, 167, 226, 0.5);
+      }
+
+      .pamphlet-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(26, 167, 226, 0.8);
+        border: 2px solid rgba(26, 167, 226, 0.9);
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 28px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        z-index: 10;
+      }
+
+      .pamphlet-close:hover {
+        background: rgba(26, 167, 226, 0.5);
+        border-color: rgba(0, 212, 255, 0.8);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+
+      .pamphlet-header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid rgba(26, 167, 226, 0.4);
+        padding-bottom: 20px;
+      }
+
+      .pamphlet-title {
+        font-size: 32px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+
+      .pamphlet-subtitle {
+        font-size: 14px;
+        color: #a0d0e0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .pamphlet-section {
+        margin-bottom: 25px;
+      }
+
+      .pamphlet-section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #00d4ff;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pamphlet-section-title::before {
+        content: "";
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(180deg, #1ba7e2, #00d4ff);
+        border-radius: 2px;
+      }
+
+      .pamphlet-text {
+        font-size: 15px;
+        color: #b0e0e6;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      .pamphlet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .pamphlet-list li {
+        font-size: 14px;
+        color: #a8d0e0;
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .pamphlet-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #1ba7e2;
+        font-size: 18px;
+      }
+
+      .pamphlet-cta {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.2),
+          rgba(0, 212, 255, 0.1)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.4);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .pamphlet-cta-text {
+        font-size: 14px;
+        color: #a0d0e0;
+        margin-bottom: 15px;
+      }
+
+      .pamphlet-button {
+        padding: 12px 30px;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.3),
+          rgba(0, 212, 255, 0.2)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.6);
+        border-radius: 8px;
+        color: #00d4ff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .pamphlet-button:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.5),
+          rgba(0, 212, 255, 0.3)
+        );
+        border-color: rgba(0, 212, 255, 0.8);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(26, 167, 226, 0.3);
+      }
+
+      /* Info Pamphlet Modal Styles */
+      .info-pamphlet-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      .info-pamphlet-modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .info-pamphlet-content {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.15),
+          rgba(0, 212, 255, 0.08)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.6);
+        border-radius: 20px;
+        padding: 50px 40px;
+        max-width: 650px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 80px rgba(26, 167, 226, 0.4);
+        animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+      }
+
+      .info-pamphlet-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(26, 167, 226, 0.3);
+        border: 2px solid rgba(26, 167, 226, 0.6);
+        color: #00d4ff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .info-pamphlet-close:hover {
+        background: rgba(26, 167, 226, 0.5);
+        border-color: rgba(0, 212, 255, 0.8);
+        color: #fff;
+        transform: rotate(90deg);
+      }
+
+      .info-pamphlet-header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid rgba(26, 167, 226, 0.4);
+        padding-bottom: 20px;
+      }
+
+      .info-pamphlet-title {
+        font-size: 32px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+
+      .info-pamphlet-subtitle {
+        font-size: 14px;
+        color: #a0d0e0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .info-pamphlet-section {
+        margin-bottom: 25px;
+      }
+
+      .info-pamphlet-section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #00d4ff;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .info-pamphlet-section-title::before {
+        content: "";
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(180deg, #1ba7e2, #00d4ff);
+        border-radius: 2px;
+      }
+
+      .info-pamphlet-text {
+        font-size: 15px;
+        color: #b0e0e6;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      .info-pamphlet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .info-pamphlet-list li {
+        font-size: 14px;
+        color: #a8d0e0;
+        margin-bottom: 12px;
+        padding-left: 25px;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .info-pamphlet-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #1ba7e2;
+        font-size: 18px;
+      }
+
+      .info-pamphlet-cta {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.2),
+          rgba(0, 212, 255, 0.1)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.4);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .info-pamphlet-button {
+        padding: 12px 30px;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.3),
+          rgba(0, 212, 255, 0.2)
+        );
+        border: 2px solid rgba(26, 167, 226, 0.6);
+        border-radius: 8px;
+        color: #00d4ff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .info-pamphlet-button:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 167, 226, 0.5),
+          rgba(0, 212, 255, 0.3)
+        );
+        border-color: rgba(0, 212, 255, 0.8);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(26, 167, 226, 0.3);
+      }
+
+      @media (max-width: 768px) {
+        .welcome-title {
+          font-size: 48px;
+        }
+
+        .welcome-subtitle {
+          font-size: 18px;
+        }
+
+        .welcome-container {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .coordinator-photo-left {
+          width: 180px;
+          height: 180px;
+        }
+
+        .welcome-content {
+          width: 100%;
+          text-align: center;
+        }
+
+        .coordinator-section {
+          margin-top: 20px;
+        }
+
+        .coordinator-card {
+          padding: 20px;
+          max-width: 100%;
+        }
+
+        .button-container {
+          grid-template-columns: 1fr;
+          padding: 0 20px;
+        }
+
+        .button {
+          padding: 18px 25px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-logo">
+        <img src="kominfo.jpg" alt="KOMINFO Logo" />
+      </div>
+      <div class="loading-text">KOMINFO PMKN</div>
+      <div class="loading-dots">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </div>
+
+    <!-- Pamphlet Modal -->
+    <div class="pamphlet-modal" id="pamphletModal">
+      <!-- <div class="pamphlet-content">
+        <button class="pamphlet-close" onclick="closePamphlet()">×</button>
+        <img
+          src="brosur.jpeg"
+          alt="KOMINFO Brochure"
+          class="pamphlet-brochure-image"
+        />
+      </div> -->
+    </div>
+
+    <!-- Information Pamphlet Modal -->
+    <div class="info-pamphlet-modal" id="infoPamphletModal">
+      <div class="info-pamphlet-content">
+        <button class="info-pamphlet-close" onclick="closeInfoPamphlet()">
+          ×
+        </button>
+
+        <div class="info-pamphlet-header">
+          <div class="info-pamphlet-title">📋 Welcome KOMINFO PMKN</div>
+          <div class="info-pamphlet-subtitle">
+            Komisi Informasi PMKN 2025-2026
+          </div>
+        </div>
+
+        <div class="info-pamphlet-section">
+          <div class="info-pamphlet-section-title">Tentang Kami</div>
+          <p class="info-pamphlet-text">
+            KOMINFO adalah Komisi Informasi dari Persatuan Mahasiswa Kristen
+            Nias (PMKN) Tondano. Kami berkomitmen untuk menyediakan informasi
+            akurat, transparan, dan terpercaya kepada seluruh anggota PMKN. Tim
+            kami bekerja keras untuk memastikan setiap keputusan didasarkan pada
+            data yang jelas dan komunikasi yang baik.
+          </p>
+        </div>
+
+        <div class="info-pamphlet-section">
+          <div class="info-pamphlet-section-title">Fitur Portal Kami</div>
+          <ul class="info-pamphlet-list">
+            <li>
+              <strong>✍︎ Project:</strong> Jelajahi semua proyek dan inisiatif
+              KOMINFO terkini
+            </li>
+            <li>
+              <strong>⎙ Upload:</strong> Kelola dan unggah file proyek ke Google
+              Drive terpusat
+            </li>
+            <li>
+              <strong>𖠌 Partners:</strong> Berkenalan dengan anggota tim KOMINFO
+              kami
+            </li>
+            <li>
+              <strong>ⓘ About Us:</strong> Pelajari lebih lanjut tentang visi
+              dan misi organisasi
+            </li>
+            <li>
+              <strong>📋 Program Kerja:</strong> Lihat jadwal, timeline, dan
+              kegiatan terjadwal
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-pamphlet-section">
+          <div class="info-pamphlet-section-title">Visi Kami</div>
+          <p class="info-pamphlet-text">
+            Menjadi pusat informasi yang dapat diandalkan dan responsif dalam
+            melayani kebutuhan informasi seluruh anggota PMKN dengan
+            profesionalisme dan integritas.
+          </p>
+        </div>
+
+        <div class="info-pamphlet-section">
+          <div class="info-pamphlet-section-title">Hubungi Kami</div>
+          <p class="info-pamphlet-text">
+            Untuk pertanyaan atau masukan, hubungi kami melalui email atau
+            telepon yang tercantum di bagian kontak portal.
+          </p>
+        </div>
+
+        <div class="info-pamphlet-cta">
+          <div
+            class="info-pamphlet-text"
+            style="margin-bottom: 0; font-size: 13px"
+          >
+            Terima kasih telah mengunjungi KOMINFO PMKN
+          </div>
+          <button
+            class="info-pamphlet-button"
+            onclick="closeInfoPamphlet()"
+            style="margin-top: 15px"
+          >
+            Lanjutkan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Background Elements -->
+    <div
+      class="floating-element"
+      style="
+        width: 300px;
+        height: 300px;
+        background: #1ba7e2;
+        top: 10%;
+        left: 10%;
+      "
+    ></div>
+    <div
+      class="floating-element"
+      style="
+        width: 200px;
+        height: 200px;
+        background: #00d4ff;
+        top: 60%;
+        right: 5%;
+        animation-delay: 2s;
+      "
+    ></div>
+    <div
+      class="floating-element"
+      style="
+        width: 250px;
+        height: 250px;
+        background: #0f3460;
+        bottom: 10%;
+        left: 30%;
+        animation-delay: 4s;
+      "
+    ></div>
+
+    <!-- Header Navigation -->
+    <div class="header">
+      <div class="header-left">
+        <img src="kominfo.jpg" alt="" class="logo" />
+        KOMINFO PMKN
+      </div>
+      <div class="header-right">
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="menu" id="menu">
+          <li><a href="index.html" class="active">🏠︎ Home</a></li>
+          <li><a href="project.html">✍︎ Project</a></li>
+          <li><a href="upload.html">⎙ Upload</a></li>
+          <li><a href="partners.html">𖠌 Partners</a></li>
+          <li><a href="about.html">ⓘ About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <div class="welcome-container">
+        <!-- Coordinator Photo on the Left -->
+        <img src="kominfojestin.jpg" alt="" class="coordinator-photo-left" />
+
+        <!-- Welcome Content on the Right -->
+        <div class="welcome-content">
+          <h1 class="welcome-title">Welcome to KOMINFO</h1>
+          <h2 class="welcome-subtitle">PMKN 2025 Upload Portal</h2>
+          <p class="welcome-description">
+            Pusat utama Anda untuk manajemen dokumen dan berbagi file. Akses
+            semua sumber daya, pembaruan, dan materi kolaboratif di satu lokasi
+            aman.
+          </p>
+          <div
+            style="
+              max-width: 800px;
+              margin-top: 40px;
+              padding: 30px;
+              background: rgba(26, 167, 226, 0.05);
+              border-radius: 15px;
+              border-left: 4px solid rgba(26, 167, 226, 0.5);
+              animation: floatIn 1s ease-out 0.8s both;
+            "
+          >
+            <p style="font-size: 18px; color: #b0e0e6; line-height: 1.8">
+              Selamat datang di portal KOMINFO PMKN 2025. Platform ini dirancang
+              untuk mempermudah alur kerja Anda dan meningkatkan kolaborasi di
+              seluruh departemen dan inisiatif.
+            </p>
+            <p
+              style="
+                font-size: 18px;
+                color: #b0e0e6;
+                line-height: 1.8;
+                margin-top: 15px;
+              "
+            >
+              Jelajahi menu untuk mengakses bagian yang berbeda atau navigasikan
+              ke bagian <strong>Upload</strong> untuk mengelola semua file
+              proyek dan sumber daya Anda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-section">
+      <h2>Tentang KOMINFO PMKN</h2>
+      <a
+        href="https://youtu.be/Zn9VKco1-80?si=9MUnNWupLpLdBMVC"
+        target="_blank"
+        class="video-container"
+      >
+        <div
+          class="video-thumbnail"
+          style="background-image: url(tumbnail.png)"
+        >
+          <div class="play-button"></div>
+        </div>
+      </a>
+      <div class="video-description">
+        🎬 Tonton video pengenalan resmi Persatuan Mahasiswa Kristen Nias PMKN -
+        Tondano. Pelajari lebih lanjut tentang organisasi kami, misi, dan
+        inisiatif yang kami jalankan untuk mendukung program PMKN. Klik Tombol
+        di samping untuk membuka video di YouTube.
+      </div>
+    </div>
+
+    <!-- Quick Links Section -->
+    <div class="quick-links-section">
+      <h2>⚡︎ Akses Cepat</h2>
+      <ul class="quick-links-list">
+        <li class="quick-link-item">
+          <a href="project.html">
+            <span class="quick-link-icon">📊</span>
+            <div class="quick-link-text">
+              <span class="quick-link-title">Project</span>
+              <span class="quick-link-description">Lihat semua proyek</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="quick-link-item">
+          <a href="upload.html">
+            <span class="quick-link-icon">📤</span>
+            <div class="quick-link-text">
+              <span class="quick-link-title">Upload</span>
+              <span class="quick-link-description">Kelola file proyek</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="quick-link-item">
+          <a href="partners.html">
+            <span class="quick-link-icon">🤝</span>
+            <div class="quick-link-text">
+              <span class="quick-link-title">Partners</span>
+              <span class="quick-link-description">Anggota KOMINFO</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="quick-link-item">
+          <a href="about.html">
+            <span class="quick-link-icon">ℹ️</span>
+            <div class="quick-link-text">
+              <span class="quick-link-title">About Us</span>
+              <span class="quick-link-description">Tentang KOMINFO</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="quick-link-item">
+          <a href="work-program.html">
+            <span class="quick-link-icon">📋</span>
+            <div class="quick-link-text">
+              <span class="quick-link-title">Program Kerja</span>
+              <span class="quick-link-description">Jadwal & timeline</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact Info Section -->
+    <div class="contact-info-section">
+      <h3>☏ Hubungi Kami</h3>
+      <div class="contact-item">
+        <span class="contact-icon">⚲</span>
+        <span
+          >Jl. UNIMA-Remboken No.11, Tataaran Patar, Kec. Tondano Sel.,
+          Kabupaten Minahasa, Sulawesi Utara</span
+        >
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉</span>
+        <a href="pmkntondano@gmail.com">pmkntondano@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✆</span>
+        <a href="tel:+62 823-6220-3045">+62 823-6220-3045</a>
+      </div>
+    </div>
+
+    <script>
+      // Hamburger Menu Toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const menu = document.getElementById("menu");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        menu.classList.toggle("active");
+      });
+
+      // Close menu when a link is clicked
+      const menuLinks = menu.querySelectorAll("a");
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          menu.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !e.target.closest(".header-right") &&
+          !e.target.closest(".header-left")
+        ) {
+          menuToggle.classList.remove("active");
+          menu.classList.remove("active");
+        }
+      });
+
+      // Loading Screen Animation
+      window.addEventListener("load", function () {
+        const loadingScreen = document.getElementById("loadingScreen");
+        if (loadingScreen) {
+          setTimeout(function () {
+            loadingScreen.classList.add("hidden");
+          }, 500);
+        }
+
+        // Show pamphlet modal after page loads
+        setTimeout(function () {
+          showPamphlet();
+        }, 1000);
+      });
+
+      // Pamphlet Modal Functions
+      function showPamphlet() {
+        const modal = document.getElementById("pamphletModal");
+        if (modal) {
+          modal.classList.add("active");
+        }
+      }
+
+      function closePamphlet() {
+        const modal = document.getElementById("pamphletModal");
+        if (modal) {
+          modal.classList.remove("active");
+        }
+        // Show info pamphlet after closing brochure
+        setTimeout(function () {
+          showInfoPamphlet();
+        }, 500);
+      }
+
+      function showInfoPamphlet() {
+        const modal = document.getElementById("infoPamphletModal");
+        if (modal) {
+          modal.classList.add("active");
+        }
+      }
+
+      function closeInfoPamphlet() {
+        const modal = document.getElementById("infoPamphletModal");
+        if (modal) {
+          modal.classList.remove("active");
+        }
+      }
+
+      // Close pamphlet when clicking outside the content
+      document
+        .getElementById("pamphletModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closePamphlet();
+          }
+        });
+
+      // Close info pamphlet when clicking outside the content
+      document
+        .getElementById("infoPamphletModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeInfoPamphlet();
+          }
+        });
+
+      // Close pamphlets with Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const pamphletModal = document.getElementById("pamphletModal");
+          const infoPamphletModal =
+            document.getElementById("infoPamphletModal");
+
+          if (pamphletModal && pamphletModal.classList.contains("active")) {
+            closePamphlet();
+          } else if (
+            infoPamphletModal &&
+            infoPamphletModal.classList.contains("active")
+          ) {
+            closeInfoPamphlet();
+          }
+        }
+      });
+    </script>
+    <!-- Chat Assistant Widget -->
+    <style>
+      /* Chat widget styles */
+      .chat-toggle {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        cursor: pointer;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        z-index: 3000;
+      }
+
+      .chat-panel {
+        position: fixed;
+        right: 20px;
+        bottom: 90px;
+        width: 340px;
+        max-height: 70vh;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 30, 50, 0.98),
+          rgba(10, 20, 40, 0.98)
+        );
+        border: 1px solid rgba(26, 167, 226, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        z-index: 3000;
+      }
+
+      .chat-panel.active {
+        display: flex;
+      }
+
+      .chat-header {
+        padding: 12px 14px;
+        background: rgba(26, 167, 226, 0.06);
+        border-bottom: 1px solid rgba(26, 167, 226, 0.06);
+        color: #eaf6fb;
+        font-weight: 700;
+      }
+
+      .chat-body {
+        padding: 10px;
+        overflow-y: auto;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .chat-msg {
+        max-width: 80%;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .chat-msg.user {
+        align-self: flex-end;
+        background: rgba(0, 212, 255, 0.12);
+        color: #dff9ff;
+      }
+      .chat-msg.assistant {
+        align-self: flex-start;
+        background: rgba(26, 167, 226, 0.08);
+        color: #d6f7ff;
+      }
+
+      .chat-quick {
+        padding: 10px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chat-quick button {
+        background: rgba(26, 167, 226, 0.12);
+        border: none;
+        color: #dff9ff;
+        padding: 6px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .chat-footer {
+        padding: 8px;
+        border-top: 1px solid rgba(26, 167, 226, 0.04);
+        display: flex;
+        gap: 8px;
+      }
+      .chat-footer input {
+        flex: 1;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: transparent;
+        color: #eaf6fb;
+      }
+      .chat-footer button {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
+        color: #052027;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+
+    <div class="chat-toggle" id="chatToggle">💭</div>
+    <div class="chat-panel" id="chatPanel" aria-hidden="true">
+      <div class="chat-header">𖠌 KOMINFO Assistant</div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-quick" id="chatQuick"></div>
+      </div>
+      <div class="chat-footer">
+        <input
+          id="chatInput"
+          placeholder="Tanyakan sesuatu..."
+          aria-label="chat input"
+        />
+        <button id="chatSend">➤</button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const quickQuestions = [
+          {
+            q: "Apa itu KOMINFO?",
+            a: "KOMINFO adalah Komisi Informasi PMKN, menyediakan akses dan manajemen informasi bagi anggota PMKN.",
+          },
+          {
+            q: "Bagaimana cara upload file?",
+            a: "Pergi ke menu Upload atau klik Akses Cepat → Upload. Pilih file lalu ikuti instruksi untuk menyimpan ke Google Drive terpusat.",
+          },
+          {
+            q: "Siapa kontak untuk pertanyaan?",
+            a: "Email: pmkntondano@gmail.com. Telepon: +62 823-6220-3045.",
+          },
+          {
+            q: "Bagaimana melihat project?",
+            a: "Gunakan menu Project atau Akses Cepat → Project untuk melihat semua proyek yang terdaftar.",
+          },
+          {
+            q: "Apa itu PMKN?",
+            a: "PMKN adalah Persatuan Mahasiswa Kristen Nias, sebuah organisasi mahasiswa di Tondano, yang tujuannya adalah memperkuat kebersamaan dan semangat kekristenan di kalangan mahasiswa Nias.",
+          },
+        ];
+
+        const chatToggle = document.getElementById("chatToggle");
+        const chatPanel = document.getElementById("chatPanel");
+        const chatBody = document.getElementById("chatBody");
+        const chatQuick = document.getElementById("chatQuick");
+        const chatInput = document.getElementById("chatInput");
+        const chatSend = document.getElementById("chatSend");
+
+        function appendMessage(text, role) {
+          const el = document.createElement("div");
+          el.className = "chat-msg " + (role === "user" ? "user" : "assistant");
+          el.textContent = text;
+          chatBody.appendChild(el);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getAssistantReply(text) {
+          const t = text.trim().toLowerCase();
+          for (const item of quickQuestions) {
+            if (t === item.q.toLowerCase()) return item.a;
+            // keyword match
+            const keywords = item.q.toLowerCase().split(/\s+/).filter(Boolean);
+            for (const k of keywords) {
+              if (k.length > 3 && t.includes(k)) return item.a;
+            }
+          }
+          return "Wah pertanyaan yang bagus! Tapi saya perlu info lebih spesifik nih. 🙏 Kamu bisa tanya tentang KOMINFO, cara upload file, kontak kami, atau project yang tersedia. Atau langsung hubungi kami ya!";
+        }
+
+        function sendUserMessage(text) {
+          if (!text || !text.trim()) return;
+          appendMessage(text, "user");
+          chatInput.value = "";
+          // simulate thinking
+          setTimeout(() => {
+            const reply = getAssistantReply(text);
+            appendMessage(reply, "assistant");
+          }, 600);
+        }
+
+        // populate quick buttons
+        quickQuestions.forEach((q) => {
+          const btn = document.createElement("button");
+          btn.textContent = q.q;
+          btn.addEventListener("click", () => {
+            sendUserMessage(q.q);
+          });
+          chatQuick.appendChild(btn);
+        });
+
+        chatToggle.addEventListener("click", () => {
+          const open = chatPanel.classList.toggle("active");
+          chatPanel.setAttribute("aria-hidden", open ? "false" : "true");
+          if (open) chatInput.focus();
+        });
+
+        chatSend.addEventListener("click", () =>
+          sendUserMessage(chatInput.value),
+        );
+        chatInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") sendUserMessage(chatInput.value);
+        });
+      })();
+    </script>
+  </body>
+</html>
