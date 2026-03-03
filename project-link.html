@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="kominfo.jpg" type="image/png" />
     <title>Project Link - KOMINFO PMKN 2025</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <style>
       * {
         margin: 0;
@@ -640,9 +649,12 @@
     <!-- Header Navigation -->
     <div class="header">
       <div class="header-left">
-        <img src="kominfo.jpg" alt="Logo" class="logo" />
-        KOMINFO PMKN
+        <div class="logo-wrapper">
+          <img src="kominfo.jpg" alt="Logo" class="logo" />
+        </div>
+        <span class="brand-name">KOMINFO <span>PMKN</span></span>
       </div>
+
       <div class="header-right">
         <button class="menu-toggle" id="menuToggle">
           <span></span>
@@ -650,12 +662,12 @@
           <span></span>
         </button>
         <ul class="menu" id="menu">
-          <li><a href="index.html" class="active">🏠︎ Home</a></li>
-          <li><a href="project.html">✍︎ Project</a></li>
-          <li><a href="upload.html">⎙ Upload</a></li>
-          <li><a href="partners.html">𖠌 Partners</a></li>
-          <li><a href="about.html">ⓘ About</a></li>
-        </ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="project.html" class="active"><i class="fas fa-project-diagram"></i> Project</a></li>
+        <li><a href="upload.html"><i class="fas fa-cloud-upload-alt"></i> Upload</a></li>
+        <li><a href="partners.html"><i class="fas fa-users"></i> Partners</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      </ul>
       </div>
     </div>
 
@@ -709,38 +721,34 @@
       </div>
 
       <!-- Links Section -->
-      <div class="link-container">
-        <!-- Upload Portal -->
-        <div class="link-card">
-          <div class="link-icon">📤</div>
-          <div class="link-title">Upload Portal</div>
-          <div class="link-description">
-            Submit and manage your project files and deliverables
-          </div>
-          <a href="upload.html" class="link-button">Go to Portal →</a>
-        </div>
-
-        <!-- Social Media -->
-        <div class="link-card">
-          <div class="link-icon">📱</div>
-          <div class="link-title">Social Media</div>
-          <div class="link-description">
-            Follow us on social media for updates and announcements
-          </div>
-          <a href="about.html#social" class="link-button">Learn More →</a>
-        </div>
-
-        <!-- FAQ -->
-        <div class="link-card">
-          <div class="link-icon">❓</div>
-          <div class="link-title">FAQ</div>
-          <div class="link-description">
-            Find answers to frequently asked questions about the program
-          </div>
-          <a href="#" class="link-button">Read FAQ →</a>
-        </div>
-      </div>
+     <div class="link-container">
+  <div class="link-card">
+    <div class="link-icon"><i class="fas fa-cloud-upload-alt" style="color: #4f46e5;"></i></div>
+    <div class="link-title">Upload Portal</div>
+    <div class="link-description">
+      Kirim dan kelola dokumen proyek Anda langsung ke database pusat KOMINFO secara aman.
     </div>
+    <a href="upload.html" class="link-button">Buka Portal</a>
+  </div>
+
+  <div class="link-card">
+    <div class="link-icon"><i class="fas fa-hashtag" style="color: #0ea5e9;"></i></div>
+    <div class="link-title">Social Media</div>
+    <div class="link-description">
+      Ikuti kami untuk pengumuman terbaru dan dokumentasi kegiatan PMKN Tondano.
+    </div>
+    <a href="about.html" class="link-button">Ikuti Kami</a>
+  </div>
+
+  <div class="link-card">
+    <div class="link-icon"><i class="fas fa-question-circle" style="color: #f59e0b;"></i></div>
+    <div class="link-title">FAQ</div>
+    <div class="link-description">
+      Cari jawaban atas pertanyaan umum mengenai program kerja dan prosedur KOMINFO.
+    </div>
+    <a href="https://berlins-zal6.github.io/pmkn-tondano/FAQ.html" class="link-button">Baca FAQ <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 12px;"></i></a>
+  </div>
+</div>
 
     <script>
       // Hamburger Menu Toggle
@@ -874,43 +882,59 @@
     </script>
     <!-- Chat Assistant Widget -->
     <style>
-      /* Chat widget styles */
+      /* --- Chat Widget Modern --- */
       .chat-toggle {
         position: fixed;
-        right: 20px;
-        bottom: 20px;
-        width: 60px;
-        height: 60px;
+        right: 25px;
+        bottom: 25px;
+        width: 65px;
+        height: 65px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
+        /* Gradient senada dengan Navbar */
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 26px;
+        font-size: 28px;
         cursor: pointer;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
         z-index: 3000;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .chat-toggle:hover {
+        transform: scale(1.1) rotate(10deg);
       }
 
       .chat-panel {
         position: fixed;
-        right: 20px;
-        bottom: 90px;
-        width: 340px;
+        right: 25px;
+        bottom: 100px;
+        width: 360px;
+        height: 500px; /* Ukuran tetap agar lebih rapi */
         max-height: 70vh;
-        background: linear-gradient(
-          180deg,
-          rgba(15, 30, 50, 0.98),
-          rgba(10, 20, 40, 0.98)
-        );
-        border: 1px solid rgba(26, 167, 226, 0.2);
-        border-radius: 12px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        background: rgba(10, 14, 39, 0.95); /* Deep Midnight Blue */
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         overflow: hidden;
         display: none;
         flex-direction: column;
         z-index: 3000;
+        animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .chat-panel.active {
@@ -918,96 +942,182 @@
       }
 
       .chat-header {
-        padding: 12px 14px;
-        background: rgba(26, 167, 226, 0.06);
-        border-bottom: 1px solid rgba(26, 167, 226, 0.06);
-        color: #eaf6fb;
+        padding: 18px 20px;
+        background: linear-gradient(
+          to right,
+          rgba(79, 70, 229, 0.2),
+          transparent
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ffffff;
         font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .chat-body {
-        padding: 10px;
+        padding: 20px;
         overflow-y: auto;
-        flex: 1 1 auto;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
       }
 
       .chat-msg {
-        max-width: 80%;
-        padding: 8px 10px;
-        border-radius: 8px;
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 16px;
         font-size: 14px;
+        line-height: 1.5;
       }
+
       .chat-msg.user {
         align-self: flex-end;
-        background: rgba(0, 212, 255, 0.12);
-        color: #dff9ff;
+        background: #4f46e5;
+        color: #ffffff;
+        border-bottom-right-radius: 4px;
       }
+
       .chat-msg.assistant {
         align-self: flex-start;
-        background: rgba(26, 167, 226, 0.08);
-        color: #d6f7ff;
+        background: rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        border-bottom-left-radius: 4px;
       }
 
       .chat-quick {
-        padding: 10px;
+        padding: 0 15px 15px;
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
       }
+
       .chat-quick button {
-        background: rgba(26, 167, 226, 0.12);
-        border: none;
-        color: #dff9ff;
-        padding: 6px 8px;
-        border-radius: 8px;
+        background: rgba(79, 70, 229, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        color: #a5b4fc;
+        padding: 6px 12px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 13px;
+        font-size: 12px;
+        transition: all 0.2s;
+      }
+
+      .chat-quick button:hover {
+        background: rgba(79, 70, 229, 0.2);
+        color: #ffffff;
       }
 
       .chat-footer {
-        padding: 8px;
-        border-top: 1px solid rgba(26, 167, 226, 0.04);
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.2);
         display: flex;
-        gap: 8px;
+        gap: 10px;
       }
+
       .chat-footer input {
         flex: 1;
-        padding: 8px 10px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: transparent;
-        color: #eaf6fb;
+        padding: 12px 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        outline: none;
       }
+
       .chat-footer button {
-        padding: 8px 12px;
-        border-radius: 8px;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
         border: none;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
-        color: #052027;
-        font-weight: 700;
+        background: #4f46e5;
+        color: #fff;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+
+      .chat-footer button:hover {
+        background: #6366f1;
+        transform: scale(1.05);
+      }
+
+      /* Animasi Mengetik */
+      .typing {
+        display: flex;
+        gap: 4px;
+        padding: 10px 15px !important;
+      }
+
+      .typing span {
+        width: 6px;
+        height: 6px;
+        background: #a5b4fc;
+        border-radius: 50%;
+        animation: typing 1.4s infinite both;
+      }
+
+      .typing span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.4;
+        }
+        40% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
       }
     </style>
 
-    <div class="chat-toggle" id="chatToggle">💭</div>
+    <div class="chat-toggle" id="chatToggle">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+
     <div class="chat-panel" id="chatPanel" aria-hidden="true">
-      <div class="chat-header">𖠌 KOMINFO Assistant</div>
-      <div class="chat-body" id="chatBody">
-        <div class="chat-quick" id="chatQuick"></div>
+      <div class="chat-header">
+        <div
+          style="
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+          "
+        ></div>
+        KOMINFO Assistant
       </div>
+
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg assistant">
+          Halo! Saya asisten KOMINFO. Ada yang bisa saya bantu?
+        </div>
+      </div>
+
+      <div class="chat-quick" id="chatQuick"></div>
+
       <div class="chat-footer">
         <input
           id="chatInput"
-          placeholder="Tanyakan sesuatu..."
+          placeholder="Ketik pesan..."
           aria-label="chat input"
         />
-        <button id="chatSend">➤</button>
+        <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
-
     <script>
       (function () {
         const quickQuestions = [
@@ -1029,16 +1139,16 @@
           },
           {
             q: "Apa itu PMKN?",
-            a: "PMKN adalah Persatuan Mahasiswa Kristen Nias, sebuah organisasi mahasiswa di Tondano, yang tujuannya adalah memperkuat kebersamaan dan semangat kekristenan di kalangan mahasiswa Nias.",
+            a: "PMKN adalah Persatuan Mahasiswa Kristen Nias, sebuah organisasi mahasiswa di Tondano yang bertujuan memperkuat kebersamaan mahasiswa Nias.",
           },
         ];
 
-        const chatToggle = document.getElementById("chatToggle");
-        const chatPanel = document.getElementById("chatPanel");
         const chatBody = document.getElementById("chatBody");
-        const chatQuick = document.getElementById("chatQuick");
         const chatInput = document.getElementById("chatInput");
         const chatSend = document.getElementById("chatSend");
+        const chatToggle = document.getElementById("chatToggle");
+        const chatPanel = document.getElementById("chatPanel");
+        const chatQuick = document.getElementById("chatQuick");
 
         function appendMessage(text, role) {
           const el = document.createElement("div");
@@ -1046,46 +1156,75 @@
           el.textContent = text;
           chatBody.appendChild(el);
           chatBody.scrollTop = chatBody.scrollHeight;
+          return el;
+        }
+
+        function showTypingIndicator() {
+          const indicator = document.createElement("div");
+          indicator.className = "chat-msg assistant typing";
+          indicator.id = "typing-indicator";
+          indicator.innerHTML = "<span></span><span></span><span></span>";
+          chatBody.appendChild(indicator);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+          const indicator = document.getElementById("typing-indicator");
+          if (indicator) indicator.remove();
+        }
+
+        // Fungsi untuk mensimulasikan efek teks mengetik (Typewriter)
+        function typeWriter(text, element) {
+          let i = 0;
+          element.textContent = "";
+          function type() {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              chatBody.scrollTop = chatBody.scrollHeight;
+              setTimeout(type, 20); // Kecepatan mengetik (ms)
+            }
+          }
+          type();
         }
 
         function getAssistantReply(text) {
           const t = text.trim().toLowerCase();
           for (const item of quickQuestions) {
-            if (t === item.q.toLowerCase()) return item.a;
-            // keyword match
-            const keywords = item.q.toLowerCase().split(/\s+/).filter(Boolean);
-            for (const k of keywords) {
-              if (k.length > 3 && t.includes(k)) return item.a;
+            if (
+              t === item.q.toLowerCase() ||
+              t.includes(item.q.toLowerCase().split(" ")[0])
+            ) {
+              return item.a;
             }
           }
-          return "Wah pertanyaan yang bagus! Tapi saya perlu info lebih spesifik nih. 🙏 Kamu bisa tanya tentang KOMINFO, cara upload file, kontak kami, atau project yang tersedia. Atau langsung hubungi kami ya!";
+          return "Wah pertanyaan yang bagus! Tapi saya perlu info lebih spesifik nih. 🙏 Kamu bisa tanya tentang KOMINFO, cara upload, atau project PMKN.";
         }
 
         function sendUserMessage(text) {
           if (!text || !text.trim()) return;
+
           appendMessage(text, "user");
           chatInput.value = "";
-          // simulate thinking
+
+          // Tampilkan animasi mengetik
           setTimeout(() => {
-            const reply = getAssistantReply(text);
-            appendMessage(reply, "assistant");
-          }, 600);
+            showTypingIndicator();
+
+            // Setelah delay 1.5 detik, tampilkan jawaban
+            setTimeout(() => {
+              removeTypingIndicator();
+              const replyText = getAssistantReply(text);
+              const replyEl = appendMessage("", "assistant");
+              typeWriter(replyText, replyEl);
+            }, 1500);
+          }, 400);
         }
 
-        // populate quick buttons
-        quickQuestions.forEach((q) => {
-          const btn = document.createElement("button");
-          btn.textContent = q.q;
-          btn.addEventListener("click", () => {
-            sendUserMessage(q.q);
-          });
-          chatQuick.appendChild(btn);
-        });
-
-        chatToggle.addEventListener("click", () => {
-          const open = chatPanel.classList.toggle("active");
-          chatPanel.setAttribute("aria-hidden", open ? "false" : "true");
-          if (open) chatInput.focus();
+        // Event Listeners
+        chatQuick.addEventListener("click", (e) => {
+          if (e.target.tagName === "BUTTON")
+            sendUserMessage(e.target.textContent);
         });
 
         chatSend.addEventListener("click", () =>
@@ -1093,6 +1232,18 @@
         );
         chatInput.addEventListener("keydown", (e) => {
           if (e.key === "Enter") sendUserMessage(chatInput.value);
+        });
+
+        chatToggle.addEventListener("click", () => {
+          chatPanel.classList.toggle("active");
+          if (chatPanel.classList.contains("active")) chatInput.focus();
+        });
+
+        // Populate Buttons
+        quickQuestions.forEach((q) => {
+          const btn = document.createElement("button");
+          btn.textContent = q.q;
+          chatQuick.appendChild(btn);
         });
       })();
     </script>

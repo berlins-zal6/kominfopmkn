@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="kominfo.jpg" type="image/png" />
     <title>KOMINFO PMKN 2026 - Upload Portal</title>
+
+    <link rel="canonical" href="https://kominfo.pmkn.org" />
+
     <meta
       name="google-site-verification"
       content="NGc2gcclV0RvXD7ilwl2pW8agl5z1xizHCXg4HtranM"
     />
+
+    <meta name="description" content="Portal Upload KOMINFO PMKN 2026" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <style>
       * {
         margin: 0;
@@ -378,80 +392,131 @@
         }
       }
 
+      /* welcome to portal */
       .welcome-section {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: calc(100vh - 80px);
-        text-align: center;
-        padding: 40px 20px;
-        animation: floatIn 0.8s ease-out;
+        text-align: left; /* Berubah ke kiri untuk look profesional */
+        padding: 80px 5%;
+        background: radial-gradient(
+          circle at 10% 20%,
+          rgba(15, 52, 96, 0.3) 0%,
+          transparent 50%
+        );
       }
 
       .welcome-container {
         display: flex;
         align-items: center;
-        gap: 50px;
-        max-width: 1000px;
+        gap: 80px;
+        max-width: 1200px;
         justify-content: center;
         flex-wrap: wrap;
       }
 
+      /* --- Foto Koordinator Modern --- */
       .coordinator-photo-left {
-        width: 220px;
-        height: 220px;
-        border-radius: 20px;
+        width: 280px; /* Sedikit lebih besar */
+        height: 350px;
+        border-radius: 30px;
         object-fit: cover;
-        border: 3px solid rgba(26, 167, 226, 0.5);
-        box-shadow: 0 8px 32px rgba(26, 167, 226, 0.2);
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        animation: floatIn 0.8s ease-out 0.2s both;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow:
+          20px 20px 60px rgba(0, 0, 0, 0.5),
+          -5px -5px 20px rgba(255, 255, 255, 0.05);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: grayscale(20%); /* Look sinematik */
       }
 
       .coordinator-photo-left:hover {
-        border-color: rgba(0, 212, 255, 0.8);
-        box-shadow: 0 16px 48px rgba(26, 167, 226, 0.4);
-        transform: scale(1.08) rotate(-2deg);
+        filter: grayscale(0%);
+        transform: translateY(-15px) rotate(2deg);
+        border-color: #4f46e5;
+        box-shadow: 0 25px 50px rgba(79, 70, 229, 0.3);
       }
 
+      /* --- Content Styling --- */
       .welcome-content {
         flex: 1;
-        min-width: 300px;
+        min-width: 350px;
       }
 
       .welcome-title {
-        font-size: 72px;
+        font-size: 84px; /* Lebih masif */
         font-weight: 900;
-        margin-bottom: 20px;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
-        background-size: 200% auto;
+        line-height: 1.1;
+        margin-bottom: 15px;
+        background: linear-gradient(to right, #ffffff, #a5b4fc, #818cf8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation:
-          glow 4s ease-in-out infinite,
-          gradientShift 6s ease infinite;
-        letter-spacing: 2px;
-        text-shadow: 0 0 30px rgba(26, 167, 226, 0.3);
+        letter-spacing: -3px;
+        animation: floatUp 1s ease-out;
       }
 
       .welcome-subtitle {
-        font-size: 24px;
-        color: #b0e0e6;
-        margin-bottom: 50px;
-        font-weight: 300;
-        letter-spacing: 1px;
-        animation: floatIn 1s ease-out 0.2s both;
+        font-size: 26px;
+        color: #818cf8; /* Warna indigo muda agar senada navbar */
+        margin-bottom: 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      /* Garis aksen di sebelah subtitle */
+      .welcome-subtitle::before {
+        content: "";
+        width: 50px;
+        height: 2px;
+        background: #818cf8;
       }
 
       .welcome-description {
-        font-size: 18px;
-        color: #a8a8a8;
-        margin-bottom: 60px;
-        max-width: 700px;
+        font-size: 19px;
+        color: #94a3b8;
+        margin-bottom: 40px;
+        max-width: 600px;
         line-height: 1.8;
-        animation: floatIn 1s ease-out 0.4s both;
+        font-weight: 400;
+      }
+
+      /* --- Animasi Baru --- */
+      @keyframes floatUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 968px) {
+        .welcome-section {
+          text-align: center;
+        }
+        .welcome-container {
+          gap: 40px;
+        }
+        .welcome-title {
+          font-size: 56px;
+          letter-spacing: -1px;
+        }
+        .welcome-subtitle {
+          justify-content: center;
+          font-size: 18px;
+        }
+        .welcome-subtitle::before {
+          display: none;
+        }
       }
 
       .coordinator-section {
@@ -600,631 +665,465 @@
       }
 
       .video-section {
-        max-width: 900px;
-        margin: 60px auto;
-        padding: 0 20px;
-        animation: floatIn 0.8s ease-out;
+        padding: 80px 5%;
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
       }
 
       .video-section h2 {
-        font-size: 36px;
-        font-weight: 900;
-        margin-bottom: 30px;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-align: center;
-        letter-spacing: 1px;
+        font-size: 32px;
+        color: #ffffff;
+        margin-bottom: 40px;
+        font-weight: 800;
+        letter-spacing: -1px;
       }
 
       .video-container {
         position: relative;
+        display: block;
         width: 100%;
-        padding-bottom: 56.25%;
-        height: 0;
-        border-radius: 15px;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        border-radius: 24px;
         overflow: hidden;
-        background: rgba(15, 30, 50, 0.8);
-        border: 2px solid rgba(26, 167, 226, 0.4);
-        box-shadow: 0 20px 60px rgba(26, 167, 226, 0.2);
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        cursor: pointer;
-        animation: floatIn 1s ease-out 0.3s both;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.4s ease;
       }
 
       .video-container:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 30px 80px rgba(26, 167, 226, 0.4);
-        border-color: rgba(0, 212, 255, 0.6);
+        transform: scale(1.02);
       }
 
       .video-thumbnail {
+        width: 100%;
+        padding-top: 56.25%; /* Aspect Ratio 16:9 */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        transition: all 0.5s ease;
+      }
+
+      /* Overlay Gelap saat Hover */
+      .video-container::after {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.4s ease;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(10, 14, 39, 0.8)
+        );
+        opacity: 0.6;
+        transition: opacity 0.3s;
       }
 
-      .video-container:hover .video-thumbnail {
-        filter: brightness(0.7);
+      .video-container:hover::after {
+        opacity: 0.8;
       }
 
+      /* Tombol Play Modern */
       .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 80px;
         height: 80px;
-        background: rgba(26, 167, 226, 0.9);
+        background: #4f46e5;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        box-shadow: 0 10px 40px rgba(26, 167, 226, 0.5);
-        border: 3px solid #00d4ff;
+        z-index: 2;
+        box-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
+        transition: all 0.3s ease;
       }
 
-      .video-container:hover .play-button {
-        width: 100px;
-        height: 100px;
-        background: rgba(0, 212, 255, 0.95);
-        box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
-      }
-
-      .play-button::after {
-        content: "▶";
-        color: #fff;
-        font-size: 35px;
+      .play-button::before {
+        content: "";
+        border-style: solid;
+        border-width: 15px 0 15px 25px;
+        border-color: transparent transparent transparent white;
         margin-left: 5px;
       }
 
-      .video-description {
-        margin-top: 25px;
-        padding: 20px;
-        background: rgba(26, 167, 226, 0.08);
-        border-left: 4px solid rgba(26, 167, 226, 0.5);
-        border-radius: 10px;
-        font-size: 16px;
-        color: #b0e0e6;
-        line-height: 1.6;
-        animation: floatIn 1s ease-out 0.6s both;
+      .video-container:hover .play-button {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: #6366f1;
+        box-shadow: 0 0 50px rgba(79, 70, 229, 0.8);
       }
 
+      .video-description {
+        font-size: 17px;
+        color: #94a3b8;
+        line-height: 1.8;
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* --- Quick Links Section --- */
       .quick-links-section {
         max-width: 800px;
         margin: 80px auto;
         padding: 0 20px;
+        text-align: center;
       }
 
       .quick-links-section h2 {
-        font-size: 28px;
+        font-size: 32px;
         font-weight: 800;
-        margin-bottom: 25px;
-        color: #1ba7e2;
-        text-align: center;
+        margin-bottom: 35px;
+        /* Gradasi teks agar senada dengan judul Welcome */
+        background: linear-gradient(to right, #ffffff, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -1px;
       }
 
       .quick-links-list {
         list-style: none;
         display: flex;
-        flex-direction: column;
-        gap: 8px;
-        max-width: 600px;
+        flex-direction: row; /* Berubah ke baris untuk tampilan modern */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        max-width: 700px;
         margin: 0 auto;
       }
 
       .quick-link-item {
-        display: block;
-      }
-
-      /* Plain text-only quick links: hide icons and descriptions, simplify link styling */
-      .quick-link-icon,
-      .quick-link-description {
-        display: none !important;
+        display: inline-block;
       }
 
       .quick-link-item a {
-        display: block;
-        padding: 6px 0;
-        background: transparent;
-        border: none;
-        border-radius: 0;
+        display: flex;
+        align-items: center;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.03); /* Efek Glassmorphism Tipis */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px; /* Bentuk Pill/Kapsul */
         text-decoration: none;
-        color: #b0e0e6;
-        transition: color 0.18s ease;
-        font-size: 16px;
-        font-weight: 700;
+        color: #94a3b8;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 15px;
+        font-weight: 600;
       }
 
       .quick-link-item a:hover {
-        color: #00d4ff;
-        text-decoration: underline;
+        color: #ffffff;
+        background: rgba(79, 70, 229, 0.2);
+        border-color: #4f46e5;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
       }
 
-      .quick-link-text {
-        display: block;
-      }
-
-      .quick-link-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: inherit;
-      }
-
+      /* --- Contact Info Section --- */
       .contact-info-section {
-        max-width: 800px;
-        margin: 100px auto;
-        padding: 40px 20px;
-        border-top: 1px solid rgba(26, 167, 226, 0.2);
+        max-width: 900px;
+        margin: 100px auto 50px;
+        padding: 60px 20px;
+        /* Border gradient halus */
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
       }
 
       .contact-info-section h3 {
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 700;
-        color: #1ba7e2;
-        margin-bottom: 20px;
+        color: #ffffff;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
       }
 
       .contact-item {
         display: flex;
+        flex-direction: column; /* Ikon di atas teks agar lebih ikonik */
         align-items: center;
-        justify-content: center;
         gap: 12px;
-        margin-bottom: 15px;
-        color: #b0e0e6;
-        font-size: 15px;
+        color: #94a3b8;
+        padding: 20px;
+        transition: 0.3s;
       }
 
       .contact-icon {
-        font-size: 20px;
+        font-size: 24px;
+        color: #818cf8;
+        background: rgba(129, 140, 248, 0.1);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-bottom: 5px;
+      }
+
+      .contact-item span {
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 250px;
       }
 
       .contact-item a {
-        color: #00d4ff;
+        color: #ffffff;
         text-decoration: none;
+        font-weight: 600;
         transition: all 0.3s ease;
       }
 
       .contact-item a:hover {
-        text-decoration: underline;
+        color: #818cf8;
+        text-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
       }
 
-      /* Pamphlet Modal Styles */
+      /* iklan modal */
       .pamphlet-modal {
+        display: none; /* Sembunyi secara default */
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
+        background: rgba(0, 0, 0, 0.7); /* Efek gelap di belakang iklan */
+        backdrop-filter: blur(5px);
+        z-index: 9999;
         align-items: center;
         justify-content: center;
-        z-index: 2000;
+      }
+
+      /* Animasi Masuk */
+      .pamphlet-content {
+        transform: scale(0.7);
         opacity: 0;
-        visibility: hidden;
-        transition:
-          opacity 0.4s ease,
-          visibility 0.4s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
       .pamphlet-modal.active {
+        display: flex;
+      }
+
+      .pamphlet-modal.active .pamphlet-content {
+        transform: scale(1);
         opacity: 1;
-        visibility: visible;
       }
 
-      .pamphlet-content {
-        background: transparent;
+      /* Penyesuaian Tombol Close agar terlihat menonjol */
+      .pamphlet-close {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 40px;
+        height: 40px;
+        background: #cbd5e1; /* Warna abu-abu saat terkunci */
+        color: #64748b;
+        border-radius: 50%;
         border: none;
-        border-radius: 20px;
-        padding: 0;
-        max-width: 700px;
-        width: 90%;
-        max-height: 85vh;
-        overflow-y: auto;
-        box-shadow: 0 25px 80px rgba(26, 167, 226, 0.4);
-        animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        position: relative;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: not-allowed; /* Kursor dilarang */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        z-index: 1001;
       }
 
-      .pamphlet-brochure-image {
-        width: 100%;
-        height: auto;
-        border-radius: 20px;
-        display: block;
-        box-shadow: 0 15px 50px rgba(26, 167, 226, 0.3);
-        border: 3px solid rgba(26, 167, 226, 0.5);
+      /* Style saat tombol sudah siap/bisa diklik */
+      .pamphlet-close.ready {
+        background: #ff4757; /* Warna merah saat aktif */
+        color: white;
+        cursor: pointer;
+        font-size: 24px;
+        box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
       }
 
+      .pamphlet-close.ready:hover {
+        transform: rotate(90deg) scale(1.1);
+      }
+
+      .pamphlet-close:hover {
+        transform: rotate(90deg) scale(1.1);
+      }
+
+      /* Container Utama Modal */
+      .website-redirect-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 24px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      /* Wrapper Icon Globe */
+      .main-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: #eef2ff;
+        color: #4f46e5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        margin: 0 auto 20px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Tipografi */
+      .redirect-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 10px;
+      }
+
+      .redirect-text {
+        font-size: 14px;
+        color: #6b7280;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      /* Tombol Masuk Modern */
+      .modern-redirect-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: #4f46e5; /* Warna Indigo */
+        color: white;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 16px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+      }
+
+      .modern-redirect-btn:hover {
+        background: #4338ca;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(79, 70, 229, 0.4);
+      }
+
+      .modern-redirect-btn i {
+        transition: transform 0.3s ease;
+      }
+
+      .modern-redirect-btn:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Animasi Melayang */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Close Button Adjustment */
       .pamphlet-close {
         position: absolute;
         top: 15px;
         right: 15px;
-        background: rgba(26, 167, 226, 0.8);
-        border: 2px solid rgba(26, 167, 226, 0.9);
-        color: #fff;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        font-size: 28px;
+        font-size: 24px;
+        color: #9ca3af;
+        background: none;
+        border: none;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        font-weight: bold;
-        z-index: 10;
+        transition: color 0.2s;
       }
 
       .pamphlet-close:hover {
-        background: rgba(26, 167, 226, 0.5);
-        border-color: rgba(0, 212, 255, 0.8);
-        color: #fff;
-        transform: rotate(90deg);
+        color: #ef4444;
       }
 
-      .pamphlet-header {
-        text-align: center;
-        margin-bottom: 30px;
-        border-bottom: 2px solid rgba(26, 167, 226, 0.4);
-        padding-bottom: 20px;
-      }
-
-      .pamphlet-title {
-        font-size: 32px;
-        font-weight: 900;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
-      }
-
-      .pamphlet-subtitle {
-        font-size: 14px;
-        color: #a0d0e0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .pamphlet-section {
-        margin-bottom: 25px;
-      }
-
-      .pamphlet-section-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #00d4ff;
-        margin-bottom: 12px;
+      /* Container QR Code */
+      .qr-container {
+        margin: 20px 0 30px;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 15px; /* Jarak sedikit diperlebar agar seimbang */
       }
 
-      .pamphlet-section-title::before {
-        content: "";
-        width: 4px;
-        height: 20px;
-        background: linear-gradient(180deg, #1ba7e2, #00d4ff);
-        border-radius: 2px;
-      }
-
-      .pamphlet-text {
-        font-size: 15px;
-        color: #b0e0e6;
-        line-height: 1.7;
-        margin-bottom: 15px;
-      }
-
-      .pamphlet-list {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .pamphlet-list li {
-        font-size: 14px;
-        color: #a8d0e0;
-        margin-bottom: 10px;
-        padding-left: 25px;
+      .qr-wrapper {
         position: relative;
-        line-height: 1.6;
+        /* Ukuran diperbesar menjadi 180px */
+        width: 180px;
+        height: 180px;
+        background: white;
+        padding: 12px; /* Padding sedikit ditambah agar border putih lebih lega */
+        border-radius: 20px; /* Radius sedikit ditambah agar lebih lembut */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f1f5f9;
+        overflow: hidden;
       }
 
-      .pamphlet-list li::before {
-        content: "▸";
+      .qr-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* Animasi Garis Scan Tetap Konsisten */
+      .qr-scan-line {
         position: absolute;
-        left: 0;
-        color: #1ba7e2;
-        font-size: 18px;
-      }
-
-      .pamphlet-cta {
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.2),
-          rgba(0, 212, 255, 0.1)
-        );
-        border: 2px solid rgba(26, 167, 226, 0.4);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      .pamphlet-cta-text {
-        font-size: 14px;
-        color: #a0d0e0;
-        margin-bottom: 15px;
-      }
-
-      .pamphlet-button {
-        padding: 12px 30px;
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.3),
-          rgba(0, 212, 255, 0.2)
-        );
-        border: 2px solid rgba(26, 167, 226, 0.6);
-        border-radius: 8px;
-        color: #00d4ff;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .pamphlet-button:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.5),
-          rgba(0, 212, 255, 0.3)
-        );
-        border-color: rgba(0, 212, 255, 0.8);
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(26, 167, 226, 0.3);
-      }
-
-      /* Info Pamphlet Modal Styles */
-      .info-pamphlet-modal {
-        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2000;
-        opacity: 0;
-        visibility: hidden;
-        transition:
-          opacity 0.4s ease,
-          visibility 0.4s ease;
-      }
-
-      .info-pamphlet-modal.active {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .info-pamphlet-content {
+        height: 3px; /* Sedikit lebih tebal untuk mengimbangi ukuran besar */
         background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.15),
-          rgba(0, 212, 255, 0.08)
+          to right,
+          transparent,
+          #4f46e5,
+          transparent
         );
-        border: 2px solid rgba(26, 167, 226, 0.6);
-        border-radius: 20px;
-        padding: 50px 40px;
-        max-width: 650px;
-        width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
-        box-shadow: 0 25px 80px rgba(26, 167, 226, 0.4);
-        animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        position: relative;
+        box-shadow: 0 0 10px #4f46e5;
+        animation: scanMove 2.5s linear infinite; /* Gerakan sedikit diperlambat agar lebih elegan */
       }
 
-      .info-pamphlet-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(26, 167, 226, 0.3);
-        border: 2px solid rgba(26, 167, 226, 0.6);
-        color: #00d4ff;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        font-weight: bold;
+      @keyframes scanMove {
+        0% {
+          top: 0;
+        }
+        100% {
+          top: 100%;
+        }
       }
 
-      .info-pamphlet-close:hover {
-        background: rgba(26, 167, 226, 0.5);
-        border-color: rgba(0, 212, 255, 0.8);
-        color: #fff;
-        transform: rotate(90deg);
-      }
-
-      .info-pamphlet-header {
-        text-align: center;
-        margin-bottom: 30px;
-        border-bottom: 2px solid rgba(26, 167, 226, 0.4);
-        padding-bottom: 20px;
-      }
-
-      .info-pamphlet-title {
-        font-size: 32px;
-        font-weight: 900;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2, #00d4ff);
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
-      }
-
-      .info-pamphlet-subtitle {
-        font-size: 14px;
-        color: #a0d0e0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .info-pamphlet-section {
-        margin-bottom: 25px;
-      }
-
-      .info-pamphlet-section-title {
-        font-size: 18px;
+      .qr-label {
+        font-size: 11px;
         font-weight: 700;
-        color: #00d4ff;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .info-pamphlet-section-title::before {
-        content: "";
-        width: 4px;
-        height: 20px;
-        background: linear-gradient(180deg, #1ba7e2, #00d4ff);
-        border-radius: 2px;
-      }
-
-      .info-pamphlet-text {
-        font-size: 15px;
-        color: #b0e0e6;
-        line-height: 1.7;
-        margin-bottom: 15px;
-      }
-
-      .info-pamphlet-list {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .info-pamphlet-list li {
-        font-size: 14px;
-        color: #a8d0e0;
-        margin-bottom: 12px;
-        padding-left: 25px;
-        position: relative;
-        line-height: 1.6;
-      }
-
-      .info-pamphlet-list li::before {
-        content: "▸";
-        position: absolute;
-        left: 0;
-        color: #1ba7e2;
-        font-size: 18px;
-      }
-
-      .info-pamphlet-cta {
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.2),
-          rgba(0, 212, 255, 0.1)
-        );
-        border: 2px solid rgba(26, 167, 226, 0.4);
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      .info-pamphlet-button {
-        padding: 12px 30px;
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.3),
-          rgba(0, 212, 255, 0.2)
-        );
-        border: 2px solid rgba(26, 167, 226, 0.6);
-        border-radius: 8px;
-        color: #00d4ff;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        color: #94a3b8;
         text-transform: uppercase;
         letter-spacing: 1px;
-      }
-
-      .info-pamphlet-button:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(26, 167, 226, 0.5),
-          rgba(0, 212, 255, 0.3)
-        );
-        border-color: rgba(0, 212, 255, 0.8);
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(26, 167, 226, 0.3);
-      }
-
-      @media (max-width: 768px) {
-        .welcome-title {
-          font-size: 48px;
-        }
-
-        .welcome-subtitle {
-          font-size: 18px;
-        }
-
-        .welcome-container {
-          flex-direction: column;
-          gap: 30px;
-        }
-
-        .coordinator-photo-left {
-          width: 180px;
-          height: 180px;
-        }
-
-        .welcome-content {
-          width: 100%;
-          text-align: center;
-        }
-
-        .coordinator-section {
-          margin-top: 20px;
-        }
-
-        .coordinator-card {
-          padding: 20px;
-          max-width: 100%;
-        }
-
-        .button-container {
-          grid-template-columns: 1fr;
-          padding: 0 20px;
-        }
-
-        .button {
-          padding: 18px 25px;
-          font-size: 16px;
-        }
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
     </style>
   </head>
@@ -1238,100 +1137,46 @@
       <div class="loading-progress" id="loadingProgress">Memuat halaman...</div>
     </div>
 
-    <!-- Pamphlet Modal
+    <!-- pamflet -->
     <div class="pamphlet-modal" id="pamphletModal">
-      <div class="pamphlet-content">
-        <button class="pamphlet-close" onclick="closePamphlet()">×</button>
-        <img
-          src="brosur.jpeg"
-          alt="KOMINFO Brochure"
-          class="pamphlet-brochure-image"
-        />
-      </div>
-    </div> -->
-
-    <!-- Information Pamphlet Modal -->
-    <div class="info-pamphlet-modal" id="infoPamphletModal">
-      <div class="info-pamphlet-content">
-        <button class="info-pamphlet-close" onclick="closeInfoPamphlet()">
-          ×
+      <div class="pamphlet-content website-redirect-card">
+        <button class="pamphlet-close" onclick="closePamphlet()">
+          <i class="fas fa-times"></i>
         </button>
 
-        <div class="info-pamphlet-header">
-          <div class="info-pamphlet-title">📋 Welcome KOMINFO PMKN</div>
-          <div class="info-pamphlet-subtitle">
-            Komisi Informasi PMKN 2025-2026
+        <div class="redirect-body">
+          <div class="main-icon-wrapper">
+            <i class="fas fa-globe"></i>
           </div>
-        </div>
 
-        <div class="info-pamphlet-section">
-          <div class="info-pamphlet-section-title">Tentang Kami</div>
-          <p class="info-pamphlet-text">
-            KOMINFO adalah Komunikasi Informasi dari Persatuan Mahasiswa Kristen
-            Nias (PMKN) Tondano. Kami berkomitmen untuk menyediakan informasi
-            akurat, transparan, dan terpercaya kepada seluruh anggota PMKN. Tim
-            kami bekerja keras untuk memastikan setiap keputusan didasarkan pada
-            data yang jelas dan komunikasi yang baik.
+          <h2 class="redirect-title">Portal Resmi PMKN</h2>
+          <p class="redirect-text">
+            Pindai QR Code atau klik tombol di bawah untuk beralih ke halaman
+            utama PMKN Tondano.
           </p>
-        </div>
 
-        <div class="info-pamphlet-section">
-          <div class="info-pamphlet-section-title">Fitur Portal Kami</div>
-          <ul class="info-pamphlet-list">
-            <li>
-              <strong>✍︎ Project:</strong> Jelajahi semua proyek dan inisiatif
-              KOMINFO terkini
-            </li>
-            <li>
-              <strong>⎙ Upload:</strong> Kelola dan unggah file proyek ke Google
-              Drive terpusat
-            </li>
-            <li>
-              <strong>𖠌 Partners:</strong> Berkenalan dengan anggota tim KOMINFO
-              kami
-            </li>
-            <li>
-              <strong>ⓘ About Us:</strong> Pelajari lebih lanjut tentang visi
-              dan misi organisasi
-            </li>
-            <li>
-              <strong>📋 Program Kerja:</strong> Lihat jadwal, timeline, dan
-              kegiatan terjadwal
-            </li>
-          </ul>
-        </div>
-
-        <div class="info-pamphlet-section">
-          <div class="info-pamphlet-section-title">Visi Kami</div>
-          <p class="info-pamphlet-text">
-            Menjadi pusat informasi yang dapat diandalkan dan responsif dalam
-            melayani kebutuhan informasi seluruh anggota PMKN dengan
-            profesionalisme dan integritas.
-          </p>
-        </div>
-
-        <div class="info-pamphlet-section">
-          <div class="info-pamphlet-section-title">Hubungi Kami</div>
-          <p class="info-pamphlet-text">
-            Untuk pertanyaan atau masukan, hubungi kami melalui email atau
-            telepon yang tercantum di bagian kontak portal.
-          </p>
-        </div>
-
-        <div class="info-pamphlet-cta">
-          <div
-            class="info-pamphlet-text"
-            style="margin-bottom: 0; font-size: 13px"
-          >
-            Terima kasih telah mengunjungi KOMINFO PMKN
+          <div class="qr-container">
+            <div class="qr-wrapper">
+              <img
+                src="qr website umum.jpg"
+                alt="QR Code PMKN"
+                class="qr-image"
+              />
+              <div class="qr-scan-line"></div>
+            </div>
+            <span class="qr-label"
+              ><i class="fas fa-mobile-alt"></i> Scan to open on mobile</span
+            >
           </div>
-          <button
-            class="info-pamphlet-button"
-            onclick="closeInfoPamphlet()"
-            style="margin-top: 15px"
+
+          <a
+            href="https://berlins-zal6.github.io/pmkn-tondano/"
+            target="_blank"
+            class="modern-redirect-btn"
+            onclick="closePamphlet()"
           >
-            Lanjutkan
-          </button>
+            <span>Masuk ke Website</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1373,9 +1218,12 @@
     <!-- Header Navigation -->
     <div class="header">
       <div class="header-left">
-        <img src="kominfo.jpg" alt="" class="logo" />
-        KOMINFO PMKN
+        <div class="logo-wrapper">
+          <img src="kominfo.jpg" alt="Logo" class="logo" />
+        </div>
+        <span class="brand-name">KOMINFO <span>PMKN</span></span>
       </div>
+
       <div class="header-right">
         <button class="menu-toggle" id="menuToggle">
           <span></span>
@@ -1383,159 +1231,136 @@
           <span></span>
         </button>
         <ul class="menu" id="menu">
-          <li><a href="index.html" class="active">🏠︎ Home</a></li>
-          <li><a href="project.html">✍︎ Project</a></li>
-          <li><a href="upload.html">⎙ Upload</a></li>
-          <li><a href="partners.html">𖠌 Partners</a></li>
-          <li><a href="about.html">ⓘ About</a></li>
+          <li>
+            <a href="index.html" class="active"
+              ><i class="fas fa-home"></i> Home</a
+            >
+          </li>
+          <li>
+            <a href="project.html"
+              ><i class="fas fa-project-diagram"></i> Project</a
+            >
+          </li>
+          <li>
+            <a href="upload.html"
+              ><i class="fas fa-cloud-upload-alt"></i> Upload</a
+            >
+          </li>
+          <li>
+            <a href="partners.html"><i class="fas fa-users"></i> Partners</a>
+          </li>
+          <li>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+          </li>
         </ul>
       </div>
     </div>
 
     <!-- Welcome Section -->
-    <div class="welcome-section">
+    <section class="welcome-section">
       <div class="welcome-container">
-        <!-- Coordinator Photo on the Left -->
-        <img src="kominfojestin.jpg" alt="" class="coordinator-photo-left" />
+        <div class="photo-box">
+          <img
+            src="kominfojestin.jpg"
+            alt="Koordinator"
+            class="coordinator-photo-left"
+          />
+        </div>
 
-        <!-- Welcome Content on the Right -->
         <div class="welcome-content">
-          <h1 class="welcome-title">Welcome to KOMINFO</h1>
-          <h2 class="welcome-subtitle">PMKN 2026 Upload Portal</h2>
+          <div class="welcome-subtitle">Creative Division</div>
+          <h1 class="welcome-title">KOMINFO <br /><span>PMKN 2026</span></h1>
           <p class="welcome-description">
-            Pusat utama Anda untuk manajemen dokumen dan berbagi file. Akses
-            semua sumber daya, pembaruan, dan materi kolaboratif di satu lokasi
-            aman.
+            Pusat koordinasi informasi dan kreativitas digital Persatuan
+            Mahasiswa Kristen Nias. Kami berdedikasi untuk menciptakan
+            komunikasi yang transparan dan inovatif bagi seluruh anggota.
           </p>
-          <div
-            style="
-              max-width: 800px;
-              margin-top: 40px;
-              padding: 30px;
-              background: rgba(26, 167, 226, 0.05);
-              border-radius: 15px;
-              border-left: 4px solid rgba(26, 167, 226, 0.5);
-              animation: floatIn 1s ease-out 0.8s both;
-            "
-          >
-            <p style="font-size: 18px; color: #b0e0e6; line-height: 1.8">
-              Selamat datang di portal KOMINFO PMKN 2025/2026. Platform ini
-              dirancang untuk mempermudah alur kerja Anda dan meningkatkan
-              kolaborasi di seluruh departemen dan inisiatif.
-            </p>
-            <p
-              style="
-                font-size: 18px;
-                color: #b0e0e6;
-                line-height: 1.8;
-                margin-top: 15px;
-              "
+
+          <div class="welcome-actions">
+            <a
+              href="partners.html"
+              class="modern-redirect-btn"
+              style="width: auto; padding: 15px 40px"
             >
-              Jelajahi menu untuk mengakses bagian yang berbeda atau navigasikan
-              ke bagian <strong>Upload</strong> untuk mengelola semua file
-              proyek dan sumber daya Anda.
-            </p>
+              Explore we <i class="fas fa-chevron-right"></i>
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Video Section -->
     <div class="video-section">
       <h2>Tentang KOMINFO PMKN</h2>
+
       <a
-        href="https://youtu.be/Zn9VKco1-80?si=9MUnNWupLpLdBMVC"
+        href="https://youtu.be/Zn9VKco1-80"
         target="_blank"
         class="video-container"
       >
         <div
           class="video-thumbnail"
-          style="background-image: url(tumbnail.png)"
+          style="
+            background-image: url(&quot;https://img.youtube.com/vi/Zn9VKco1-80/maxresdefault.jpg&quot;);
+          "
         >
           <div class="play-button"></div>
         </div>
       </a>
+
       <div class="video-description">
-        🎬 Tonton video pengenalan resmi Persatuan Mahasiswa Kristen Nias PMKN -
-        Tondano. Pelajari lebih lanjut tentang organisasi kami, misi, dan
-        inisiatif yang kami jalankan untuk mendukung program PMKN. Klik Tombol
-        di samping untuk membuka video di YouTube.
+        <i
+          class="fas fa-clapperboard"
+          style="
+            color: #4f46e5;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 24px;
+          "
+        ></i>
+        Tonton video pengenalan resmi
+        <strong>Persatuan Mahasiswa Kristen Nias (PMKN) Tondano</strong>.
+        Didirikan sejak 29 Oktober 2020 [00:01:03], organisasi ini menjadi wadah
+        persaudaraan bagi putra-putri Nias yang menempuh pendidikan di Sulawesi
+        Utara. Klik video di atas untuk melihat struktur organisasi dan kegiatan
+        kami di YouTube.
       </div>
     </div>
 
     <!-- Quick Links Section -->
     <div class="quick-links-section">
-      <h2>⚡︎ Akses Cepat</h2>
+      <h2>Akses Cepat</h2>
       <ul class="quick-links-list">
+        <li class="quick-link-item"><a href="project.html">Proyek Kami</a></li>
+        <li class="quick-link-item"><a href="upload.html">Unggah File</a></li>
+        <li class="quick-link-item"><a href="partners.html">Kemitraan</a></li>
+        <li class="quick-link-item"><a href="about.html">Tentang Kami</a></li>
         <li class="quick-link-item">
-          <a href="project.html">
-            <span class="quick-link-icon">📊</span>
-            <div class="quick-link-text">
-              <span class="quick-link-title">Project</span>
-              <span class="quick-link-description">Lihat semua proyek</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="quick-link-item">
-          <a href="upload.html">
-            <span class="quick-link-icon">📤</span>
-            <div class="quick-link-text">
-              <span class="quick-link-title">Upload</span>
-              <span class="quick-link-description">Kelola file proyek</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="quick-link-item">
-          <a href="partners.html">
-            <span class="quick-link-icon">🤝</span>
-            <div class="quick-link-text">
-              <span class="quick-link-title">Partners</span>
-              <span class="quick-link-description">Anggota KOMINFO</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="quick-link-item">
-          <a href="about.html">
-            <span class="quick-link-icon">ℹ️</span>
-            <div class="quick-link-text">
-              <span class="quick-link-title">About Us</span>
-              <span class="quick-link-description">Tentang KOMINFO</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="quick-link-item">
-          <a href="work-program.html">
-            <span class="quick-link-icon">📋</span>
-            <div class="quick-link-text">
-              <span class="quick-link-title">Program Kerja</span>
-              <span class="quick-link-description">Jadwal & timeline</span>
-            </div>
-          </a>
+          <a href="work-program.html">Program Kerja</a>
         </li>
       </ul>
     </div>
 
-    <!-- Contact Info Section -->
     <div class="contact-info-section">
-      <h3>☏ Hubungi Kami</h3>
-      <div class="contact-item">
-        <span class="contact-icon">⚲</span>
-        <span
-          >Jl. UNIMA-Remboken No.11, Tataaran Patar, Kec. Tondano Sel.,
-          Kabupaten Minahasa, Sulawesi Utara</span
-        >
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">✉</span>
-        <a href="pmkntondano@gmail.com">pmkntondano@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">✆</span>
-        <a href="tel:+62 823-6220-3045">+62 823-6220-3045</a>
+      <h3>Hubungi Kami</h3>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+          <span
+            >Jl. UNIMA-Remboken No.11, Tataaran Patar, Kab. Minahasa, Sulawesi
+            Utara</span
+          >
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <a href="mailto:pmkntondano@gmail.com">pmkntondano@gmail.com</a>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <a href="tel:+6282362203045">+62 823-6220-3045</a>
+        </div>
       </div>
     </div>
 
@@ -1611,106 +1436,115 @@
         }
       }
 
+      // Fungsi untuk menutup iklan
+      let canClose = false; // Pengunci fitur close
+      let countdownSeconds = 5;
+
       function closePamphlet() {
+        // Hanya jalankan jika waktu tunggu sudah habis
+        if (!canClose) return;
+
         const modal = document.getElementById("pamphletModal");
-        if (modal) {
-          modal.classList.remove("active");
-        }
-        // Show info pamphlet after closing brochure
-        setTimeout(function () {
-          showInfoPamphlet();
-        }, 500);
+        modal.classList.remove("active");
+
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 300);
       }
 
-      function showInfoPamphlet() {
-        const modal = document.getElementById("infoPamphletModal");
-        if (modal) {
-          modal.classList.add("active");
-        }
-      }
+      window.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("pamphletModal");
+        const closeBtn = document.querySelector(".pamphlet-close");
 
-      function closeInfoPamphlet() {
-        const modal = document.getElementById("infoPamphletModal");
-        if (modal) {
-          modal.classList.remove("active");
-        }
-      }
+        // Munculkan iklan setelah 1.5 detik
+        setTimeout(() => {
+          modal.style.display = "flex";
+          requestAnimationFrame(() => {
+            modal.classList.add("active");
+          });
 
-      // Close pamphlet when clicking outside the content
-      document
-        .getElementById("pamphletModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closePamphlet();
-          }
-        });
+          // Mulai hitung mundur setelah iklan muncul
+          const timer = setInterval(() => {
+            countdownSeconds--;
 
-      // Close info pamphlet when clicking outside the content
-      document
-        .getElementById("infoPamphletModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeInfoPamphlet();
-          }
-        });
-
-      // Close pamphlets with Escape key
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-          const pamphletModal = document.getElementById("pamphletModal");
-          const infoPamphletModal =
-            document.getElementById("infoPamphletModal");
-
-          if (pamphletModal && pamphletModal.classList.contains("active")) {
-            closePamphlet();
-          } else if (
-            infoPamphletModal &&
-            infoPamphletModal.classList.contains("active")
-          ) {
-            closeInfoPamphlet();
-          }
-        }
+            if (countdownSeconds > 0) {
+              // Update teks di tombol close (opsional)
+              closeBtn.innerHTML = countdownSeconds;
+            } else {
+              // Waktu habis
+              clearInterval(timer);
+              canClose = true;
+              closeBtn.innerHTML = "×"; // Kembalikan ke icon silang
+              closeBtn.classList.add("ready"); // Tambahkan kelas untuk style tombol aktif
+            }
+          }, 1000);
+        }, 1500);
       });
+
+      // Update fungsi klik di luar agar mengikuti aturan canClose
+      window.onclick = function (event) {
+        const modal = document.getElementById("pamphletModal");
+        if (event.target == modal && canClose) {
+          closePamphlet();
+        }
+      };
     </script>
+
     <!-- Chat Assistant Widget -->
     <style>
-      /* Chat widget styles */
+      /* --- Chat Widget Modern --- */
       .chat-toggle {
         position: fixed;
-        right: 20px;
-        bottom: 20px;
-        width: 60px;
-        height: 60px;
+        right: 25px;
+        bottom: 25px;
+        width: 65px;
+        height: 65px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
+        /* Gradient senada dengan Navbar */
+        background: linear-gradient(135deg, #4f46e5, #7c3aed);
         color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 26px;
+        font-size: 28px;
         cursor: pointer;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
         z-index: 3000;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .chat-toggle:hover {
+        transform: scale(1.1) rotate(10deg);
       }
 
       .chat-panel {
         position: fixed;
-        right: 20px;
-        bottom: 90px;
-        width: 340px;
+        right: 25px;
+        bottom: 100px;
+        width: 360px;
+        height: 500px; /* Ukuran tetap agar lebih rapi */
         max-height: 70vh;
-        background: linear-gradient(
-          180deg,
-          rgba(15, 30, 50, 0.98),
-          rgba(10, 20, 40, 0.98)
-        );
-        border: 1px solid rgba(26, 167, 226, 0.2);
-        border-radius: 12px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        background: rgba(10, 14, 39, 0.95); /* Deep Midnight Blue */
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         overflow: hidden;
         display: none;
         flex-direction: column;
         z-index: 3000;
+        animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .chat-panel.active {
@@ -1718,96 +1552,182 @@
       }
 
       .chat-header {
-        padding: 12px 14px;
-        background: rgba(26, 167, 226, 0.06);
-        border-bottom: 1px solid rgba(26, 167, 226, 0.06);
-        color: #eaf6fb;
+        padding: 18px 20px;
+        background: linear-gradient(
+          to right,
+          rgba(79, 70, 229, 0.2),
+          transparent
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ffffff;
         font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .chat-body {
-        padding: 10px;
+        padding: 20px;
         overflow-y: auto;
-        flex: 1 1 auto;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
       }
 
       .chat-msg {
-        max-width: 80%;
-        padding: 8px 10px;
-        border-radius: 8px;
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 16px;
         font-size: 14px;
+        line-height: 1.5;
       }
+
       .chat-msg.user {
         align-self: flex-end;
-        background: rgba(0, 212, 255, 0.12);
-        color: #dff9ff;
+        background: #4f46e5;
+        color: #ffffff;
+        border-bottom-right-radius: 4px;
       }
+
       .chat-msg.assistant {
         align-self: flex-start;
-        background: rgba(26, 167, 226, 0.08);
-        color: #d6f7ff;
+        background: rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        border-bottom-left-radius: 4px;
       }
 
       .chat-quick {
-        padding: 10px;
+        padding: 0 15px 15px;
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
       }
+
       .chat-quick button {
-        background: rgba(26, 167, 226, 0.12);
-        border: none;
-        color: #dff9ff;
-        padding: 6px 8px;
-        border-radius: 8px;
+        background: rgba(79, 70, 229, 0.1);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        color: #a5b4fc;
+        padding: 6px 12px;
+        border-radius: 10px;
         cursor: pointer;
-        font-size: 13px;
+        font-size: 12px;
+        transition: all 0.2s;
+      }
+
+      .chat-quick button:hover {
+        background: rgba(79, 70, 229, 0.2);
+        color: #ffffff;
       }
 
       .chat-footer {
-        padding: 8px;
-        border-top: 1px solid rgba(26, 167, 226, 0.04);
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.2);
         display: flex;
-        gap: 8px;
+        gap: 10px;
       }
+
       .chat-footer input {
         flex: 1;
-        padding: 8px 10px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        background: transparent;
-        color: #eaf6fb;
+        padding: 12px 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        outline: none;
       }
+
       .chat-footer button {
-        padding: 8px 12px;
-        border-radius: 8px;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
         border: none;
-        background: linear-gradient(135deg, #00d4ff, #1ba7e2);
-        color: #052027;
-        font-weight: 700;
+        background: #4f46e5;
+        color: #fff;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+      }
+
+      .chat-footer button:hover {
+        background: #6366f1;
+        transform: scale(1.05);
+      }
+
+      /* Animasi Mengetik */
+      .typing {
+        display: flex;
+        gap: 4px;
+        padding: 10px 15px !important;
+      }
+
+      .typing span {
+        width: 6px;
+        height: 6px;
+        background: #a5b4fc;
+        border-radius: 50%;
+        animation: typing 1.4s infinite both;
+      }
+
+      .typing span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typing {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.4;
+        }
+        40% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
       }
     </style>
 
-    <div class="chat-toggle" id="chatToggle">💭</div>
+    <div class="chat-toggle" id="chatToggle">
+      <i class="fas fa-comment-dots"></i>
+    </div>
+
     <div class="chat-panel" id="chatPanel" aria-hidden="true">
-      <div class="chat-header">𖠌 KOMINFO Assistant</div>
-      <div class="chat-body" id="chatBody">
-        <div class="chat-quick" id="chatQuick"></div>
+      <div class="chat-header">
+        <div
+          style="
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+          "
+        ></div>
+        KOMINFO Assistant
       </div>
+
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg assistant">
+          Halo! Saya asisten KOMINFO. Ada yang bisa saya bantu?
+        </div>
+      </div>
+
+      <div class="chat-quick" id="chatQuick"></div>
+
       <div class="chat-footer">
         <input
           id="chatInput"
-          placeholder="Tanyakan sesuatu..."
+          placeholder="Ketik pesan..."
           aria-label="chat input"
         />
-        <button id="chatSend">➤</button>
+        <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
-
     <script>
       (function () {
         const quickQuestions = [
@@ -1829,16 +1749,16 @@
           },
           {
             q: "Apa itu PMKN?",
-            a: "PMKN adalah Persatuan Mahasiswa Kristen Nias, sebuah organisasi mahasiswa di Tondano, yang tujuannya adalah memperkuat kebersamaan dan semangat kekristenan di kalangan mahasiswa Nias.",
+            a: "PMKN adalah Persatuan Mahasiswa Kristen Nias, sebuah organisasi mahasiswa di Tondano yang bertujuan memperkuat kebersamaan mahasiswa Nias.",
           },
         ];
 
-        const chatToggle = document.getElementById("chatToggle");
-        const chatPanel = document.getElementById("chatPanel");
         const chatBody = document.getElementById("chatBody");
-        const chatQuick = document.getElementById("chatQuick");
         const chatInput = document.getElementById("chatInput");
         const chatSend = document.getElementById("chatSend");
+        const chatToggle = document.getElementById("chatToggle");
+        const chatPanel = document.getElementById("chatPanel");
+        const chatQuick = document.getElementById("chatQuick");
 
         function appendMessage(text, role) {
           const el = document.createElement("div");
@@ -1846,46 +1766,75 @@
           el.textContent = text;
           chatBody.appendChild(el);
           chatBody.scrollTop = chatBody.scrollHeight;
+          return el;
+        }
+
+        function showTypingIndicator() {
+          const indicator = document.createElement("div");
+          indicator.className = "chat-msg assistant typing";
+          indicator.id = "typing-indicator";
+          indicator.innerHTML = "<span></span><span></span><span></span>";
+          chatBody.appendChild(indicator);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+          const indicator = document.getElementById("typing-indicator");
+          if (indicator) indicator.remove();
+        }
+
+        // Fungsi untuk mensimulasikan efek teks mengetik (Typewriter)
+        function typeWriter(text, element) {
+          let i = 0;
+          element.textContent = "";
+          function type() {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              chatBody.scrollTop = chatBody.scrollHeight;
+              setTimeout(type, 20); // Kecepatan mengetik (ms)
+            }
+          }
+          type();
         }
 
         function getAssistantReply(text) {
           const t = text.trim().toLowerCase();
           for (const item of quickQuestions) {
-            if (t === item.q.toLowerCase()) return item.a;
-            // keyword match
-            const keywords = item.q.toLowerCase().split(/\s+/).filter(Boolean);
-            for (const k of keywords) {
-              if (k.length > 3 && t.includes(k)) return item.a;
+            if (
+              t === item.q.toLowerCase() ||
+              t.includes(item.q.toLowerCase().split(" ")[0])
+            ) {
+              return item.a;
             }
           }
-          return "Wah pertanyaan yang bagus! Tapi saya perlu info lebih spesifik nih. 🙏 Kamu bisa tanya tentang KOMINFO, cara upload file, kontak kami, atau project yang tersedia. Atau langsung hubungi kami ya!";
+          return "Wah pertanyaan yang bagus! Tapi saya perlu info lebih spesifik nih. 🙏 Kamu bisa tanya tentang KOMINFO, cara upload, atau project PMKN.";
         }
 
         function sendUserMessage(text) {
           if (!text || !text.trim()) return;
+
           appendMessage(text, "user");
           chatInput.value = "";
-          // simulate thinking
+
+          // Tampilkan animasi mengetik
           setTimeout(() => {
-            const reply = getAssistantReply(text);
-            appendMessage(reply, "assistant");
-          }, 600);
+            showTypingIndicator();
+
+            // Setelah delay 1.5 detik, tampilkan jawaban
+            setTimeout(() => {
+              removeTypingIndicator();
+              const replyText = getAssistantReply(text);
+              const replyEl = appendMessage("", "assistant");
+              typeWriter(replyText, replyEl);
+            }, 1500);
+          }, 400);
         }
 
-        // populate quick buttons
-        quickQuestions.forEach((q) => {
-          const btn = document.createElement("button");
-          btn.textContent = q.q;
-          btn.addEventListener("click", () => {
-            sendUserMessage(q.q);
-          });
-          chatQuick.appendChild(btn);
-        });
-
-        chatToggle.addEventListener("click", () => {
-          const open = chatPanel.classList.toggle("active");
-          chatPanel.setAttribute("aria-hidden", open ? "false" : "true");
-          if (open) chatInput.focus();
+        // Event Listeners
+        chatQuick.addEventListener("click", (e) => {
+          if (e.target.tagName === "BUTTON")
+            sendUserMessage(e.target.textContent);
         });
 
         chatSend.addEventListener("click", () =>
@@ -1893,6 +1842,18 @@
         );
         chatInput.addEventListener("keydown", (e) => {
           if (e.key === "Enter") sendUserMessage(chatInput.value);
+        });
+
+        chatToggle.addEventListener("click", () => {
+          chatPanel.classList.toggle("active");
+          if (chatPanel.classList.contains("active")) chatInput.focus();
+        });
+
+        // Populate Buttons
+        quickQuestions.forEach((q) => {
+          const btn = document.createElement("button");
+          btn.textContent = q.q;
+          chatQuick.appendChild(btn);
         });
       })();
     </script>
