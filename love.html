@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk - Mu ❤️</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-red: #ff4d4d;
+        --dark-red: #d63031;
+        --soft-pink: #ffafbd;
+        --bg-gradient: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+        --envelope-color: #ffffff;
+        --paper-color: #fffdf9;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-gradient);
+        overflow: hidden;
+      }
+
+      /* --- ENVELOPE ANIMATION --- */
+      .envelope-wrapper {
+        position: relative;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          opacity 0.5s ease;
+      }
+
+      .envelope-wrapper:hover {
+        transform: scale(1.05);
+      }
+
+      .envelope {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background: var(--envelope-color);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .envelope::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        border-top: 110px solid var(--dark-red);
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        transform-origin: top;
+        transition: transform 0.5s ease;
+      }
+
+      .envelope::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: 0;
+        height: 0;
+        border-top: 100px solid transparent;
+        border-right: 150px solid #f2f2f2;
+        border-bottom: 100px solid #f2f2f2;
+        border-left: 150px solid #e6e6e6;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .heart-seal {
+        position: absolute;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        color: white;
+        font-size: 2.5rem;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        transition: 0.5s ease;
+      }
+
+      .envelope-wrapper.open .envelope::before {
+        transform: rotateX(180deg);
+        z-index: 0;
+      }
+
+      .envelope-wrapper.open .heart-seal {
+        opacity: 0;
+        transform: translateX(-50%) scale(0);
+      }
+
+      .click-me {
+        position: absolute;
+        bottom: -50px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 1px;
+        animation: bounce 2s infinite;
+      }
+
+      /* --- STORY AREA --- */
+      #story-container {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      #inner-story {
+        max-width: 500px;
+        text-align: center;
+        width: 100%;
+      }
+
+      #typing-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #444;
+        min-height: 100px;
+        margin-bottom: 30px;
+        font-style: italic;
+      }
+
+      /* --- SURAT AKHIR --- */
+      .container {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: var(--paper-color);
+        padding: 2.5rem 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        max-width: 380px;
+        width: 85%;
+        z-index: 10;
+        border: 8px double var(--soft-pink);
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        color: var(--dark-red);
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+      }
+
+      .btn-container {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      button,
+      .reply-btn {
+        padding: 12px 28px;
+        border-radius: 50px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: "Poppins", sans-serif;
+      }
+
+      #yesBtn {
+        background: var(--dark-red);
+        color: white;
+      }
+      #noBtn {
+        background: #eee;
+        color: #777;
+        border: 1px solid #ddd;
+      }
+      .reply-btn {
+        background: white;
+        border: 2px solid var(--soft-pink);
+        color: var(--dark-red);
+      }
+
+      #noBtnWarning {
+        display: none;
+        position: fixed;
+        font-size: 0.7rem;
+        color: var(--dark-red);
+        font-style: italic;
+        z-index: 100;
+      }
+
+      /* --- ANIMATIONS --- */
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes floatUp {
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      @keyframes popOut {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.2);
+        }
+        30% {
+          transform: scale(1);
+        }
+      }
+
+      .floating-heart {
+        position: fixed;
+        color: var(--primary-red);
+        pointer-events: none;
+        z-index: 1;
+        animation: floatUp linear forwards;
+      }
+      .floating-cie {
+        position: fixed;
+        font-family: "Dancing Script", cursive;
+        font-weight: bold;
+        color: var(--dark-red);
+        z-index: 10000;
+        pointer-events: none;
+        animation: popOut 0.8s ease-out forwards;
+      }
+      .love-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      /* Efek kilauan emas yang menutupi layar sejenak */
+      .gold-flash {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        background: radial-gradient(
+          circle,
+          #fff700 0%,
+          #d4af37 50%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        opacity: 0;
+        z-index: 1500;
+        pointer-events: none;
+        transition: all 0.6s ease-out;
+      }
+
+      /* Animasi saat flash aktif */
+      .flash-active {
+        width: 200vw;
+        height: 200vw;
+        opacity: 0.8;
+      }
+
+      /* Partikel emas kecil */
+      .sparkle {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: #ffd700;
+        border-radius: 50%;
+        z-index: 1501;
+        pointer-events: none;
+        box-shadow: 0 0 10px #fff700;
+      }
+
+      /* Animasi layar bergetar */
+      @keyframes shakeScreen {
+        0% {
+          transform: translate(1px, 1px) rotate(0deg);
+        }
+        10% {
+          transform: translate(-1px, -2px) rotate(-1deg);
+        }
+        20% {
+          transform: translate(-3px, 0px) rotate(1deg);
+        }
+        30% {
+          transform: translate(3px, 2px) rotate(0deg);
+        }
+        40% {
+          transform: translate(1px, -1px) rotate(1deg);
+        }
+        50% {
+          transform: translate(-1px, 2px) rotate(-1deg);
+        }
+        60% {
+          transform: translate(-3px, 1px) rotate(0deg);
+        }
+        70% {
+          transform: translate(3px, 1px) rotate(-1deg);
+        }
+        80% {
+          transform: translate(-1px, -1px) rotate(1deg);
+        }
+        90% {
+          transform: translate(1px, 2px) rotate(0deg);
+        }
+        100% {
+          transform: translate(1px, -2px) rotate(-1deg);
+        }
+      }
+
+      /* Class untuk memicu getaran pada body */
+      .shaking {
+        animation: shakeScreen 0.3s;
+        animation-iteration-count: 1;
+      }
+
+      /* Animasi tombol ketakutan/goyang */
+      @keyframes btnScared {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(0.8) rotate(10deg);
+        }
+      }
+
+      .scared {
+        animation: btnScared 0.2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+      <div class="envelope"></div>
+      <i class="fa-solid fa-heart heart-seal"></i>
+      <div class="click-me">KLIK AMPLOPNYA ❤️</div>
+    </div>
+
+    <div id="story-container">
+      <div id="inner-story">
+        <div id="typing-text"></div>
+        <div id="story-options"></div>
+      </div>
+    </div>
+
+    <div class="container" id="mainContainer">
+      <div
+        class="heart-icon"
+        style="
+          font-size: 3.5rem;
+          color: var(--dark-red);
+          animation: heartbeat 1.5s infinite;
+        "
+      >
+        <i class="fa-solid fa-heart-pulse"></i>
+      </div>
+      <h1>Satu hal ... ✨</h1>
+      <p>
+        Mungkin ini cara yang sederhana, tapi tulus dari hatiku yang paling
+        dalam.
+        <br /><br />
+        <b>Maukah kamu terus menemaniku?</b>
+      </p>
+
+      <div class="btn-container">
+        <button id="yesBtn" onclick="celebrate()">Mau ❤️</button>
+        <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">
+          Nggak
+        </button>
+      </div>
+      <span id="noBtnWarning">jgn. nanti dia sedih :( 😜</span>
+    </div>
+
+    <script>
+      // DATA CERITA (Ganti teks di sini sesukamu)
+      const storyData = [
+        {
+          text: "Hai... Boleh aku jujur sebentar?",
+          reply: "Klik, kalo boleh?",
+        },
+        {
+          text: "Sebenernya aku udah lama pengen ngomong ini, tapi rasanya deg-degan banget.",
+          reply: "Apa tuh? 🤔",
+        },
+        {
+          text: "Tiap kali liat pesan dari kamu, atau denger suara kamu, hariku rasanya jadi jauh lebih baik.",
+          reply: "Masa sih? Hehe...",
+        },
+        {
+          text: "Iya serius. Makanya, lewat amplop kecil ini, aku mau tanya sesuatu...",
+          reply: "Tanya apa?",
+        },
+      ];
+
+      let currentStep = 0;
+      const typingSpeed = 50;
+
+      // Fungsi Buka Amplop
+      function openEnvelope() {
+        const wrapper = document.getElementById("envelopeWrapper");
+        wrapper.classList.add("open");
+
+        // 1. Tambahkan elemen flash ke body
+        const flash = document.createElement("div");
+        flash.className = "gold-flash";
+        document.body.appendChild(flash);
+
+        // 2. Mulai efek cahaya tepat saat amplop terbuka (sekitar 300ms setelah klik)
+        setTimeout(() => {
+          flash.classList.add("flash-active");
+
+          // Buat ledakan partikel emas
+          for (let i = 0; i < 30; i++) {
+            createSparkle();
+          }
+        }, 300);
+
+        // Alur transisi ke story
+        setTimeout(() => {
+          wrapper.style.opacity = "0";
+          // Perlahan hilangkan cahaya emas
+          flash.style.opacity = "0";
+
+          setTimeout(() => {
+            wrapper.remove();
+            flash.remove();
+            const storyCont = document.getElementById("story-container");
+            storyCont.style.display = "flex";
+            setTimeout(() => {
+              storyCont.style.opacity = "1";
+              startStory();
+            }, 50);
+          }, 500);
+        }, 1000); // Waktu diperlama sedikit agar efek emas terlihat jelas
+      }
+
+      // Fungsi pembantu untuk membuat percikan emas
+      function createSparkle() {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        document.body.appendChild(sparkle);
+
+        const destinationX = (Math.random() - 0.5) * window.innerWidth * 1.5;
+        const destinationY = (Math.random() - 0.5) * window.innerHeight * 1.5;
+
+        // Posisi awal di tengah (lokasi amplop)
+        sparkle.style.left = "50%";
+        sparkle.style.top = "50%";
+
+        const animation = sparkle.animate(
+          [
+            { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
+            {
+              transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`,
+              opacity: 0,
+            },
+          ],
+          {
+            duration: 800 + Math.random() * 1000,
+            easing: "cubic-bezier(0, .9, .57, 1)",
+          },
+        );
+
+        animation.onfinish = () => sparkle.remove();
+      }
+
+      // Fungsi Efek Mengetik
+      function startStory() {
+        const textElement = document.getElementById("typing-text");
+        const optionsElement = document.getElementById("story-options");
+        const data = storyData[currentStep];
+
+        textElement.innerHTML = "";
+        optionsElement.innerHTML = "";
+
+        let i = 0;
+        function type() {
+          if (i < data.text.length) {
+            textElement.innerHTML += data.text.charAt(i);
+            i++;
+            setTimeout(type, typingSpeed);
+          } else {
+            // Munculkan tombol balasan setelah selesai ngetik
+            const btn = document.createElement("button");
+            btn.className = "reply-btn";
+            btn.innerText = data.reply;
+            btn.onclick = nextStep;
+            optionsElement.appendChild(btn);
+          }
+        }
+        type();
+      }
+
+      function nextStep() {
+        currentStep++;
+        if (currentStep < storyData.length) {
+          startStory();
+        } else {
+          // Masuk ke pertanyaan akhir
+          const storyCont = document.getElementById("story-container");
+          const main = document.getElementById("mainContainer");
+
+          storyCont.style.opacity = "0";
+          setTimeout(() => {
+            storyCont.remove();
+            main.style.display = "block";
+            setTimeout(() => (main.style.opacity = "1"), 50);
+          }, 1000);
+        }
+      }
+
+      // Tombol Kabur
+      function moveButton() {
+        const btn = document.getElementById("noBtn");
+        const warn = document.getElementById("noBtnWarning");
+
+        // 1. Tambahkan efek getar ke seluruh layar (body)
+        document.body.classList.add("shaking");
+        // Hapus class setelah animasi selesai agar bisa dipicu lagi
+        setTimeout(() => document.body.classList.remove("shaking"), 300);
+
+        // 2. Tambahkan class 'scared' ke tombol agar terlihat goyang ketakutan
+        btn.classList.add("scared");
+
+        // 3. Tampilkan peringatan
+        warn.style.display = "block";
+        warn.innerText = "Eits! jgn. nanti dia sedih 😤";
+
+        // 4. Kalkulasi posisi acak yang lebih liar
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth - 60);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight - 60);
+
+        // 5. Pindahkan tombol dengan gaya "menghindar"
+        btn.style.position = "fixed";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+        btn.style.transition = "all 0.1s ease-out"; // Gerakan sangat cepat
+
+        // 6. Pindahkan peringatan di bawah tombol
+        warn.style.position = "fixed";
+        warn.style.left = x + "px";
+        warn.style.top = y + 50 + "px";
+
+        // Opsional: Bikin ukuran tombol "Nggak" mengecil tiap kali mau diklik
+        const currentSize = parseFloat(window.getComputedStyle(btn).fontSize);
+        if (currentSize > 8) {
+          btn.style.fontSize = currentSize - 1 + "px";
+          btn.style.padding = "5px 10px";
+        }
+      }
+
+      // Perayaan Akhir
+      function celebrate() {
+        const overlay = document.createElement("div");
+        overlay.className = "love-overlay";
+        overlay.innerHTML = `<h1 style="font-family:'Dancing Script'; font-size:4rem; color:var(--dark-red); text-align:center;">Cie-cieee! ❤️</h1>`;
+        document.body.appendChild(overlay);
+
+        function spawnCie() {
+          const cie = document.createElement("div");
+          cie.className = "floating-cie";
+          cie.innerText = "Cieee! ❤️";
+          cie.style.left = Math.random() * 85 + "vw";
+          cie.style.top = Math.random() * 85 + "vh";
+          cie.style.fontSize = Math.random() * 1.5 + 1 + "rem";
+          cie.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
+          document.body.appendChild(cie);
+          setTimeout(() => cie.remove(), 2000);
+        }
+
+        for (let i = 0; i < 60; i++) setTimeout(spawnCie, i * 60);
+        for (let i = 0; i < 50; i++) setTimeout(createHearts, i * 100);
+
+        setTimeout(() => {
+          overlay.style.opacity = "0";
+          setTimeout(() => overlay.remove(), 500);
+          document.getElementById("mainContainer").innerHTML = `
+              <div style="font-size: 4.5rem; color: #FFD700; animation: heartbeat 1.2s infinite;">
+                  <i class="fa-solid fa-face-grin-hearts"></i>
+              </div>
+              <h1>Yaaay! I'm Happy! ❤️</h1>
+              <p>Terima kasih ya sudah kasih jawaban itu. Kamu buat hariku jadi luar biasa!</p>
+              <br>
+              <a href="https://wa.me/6282358478663?text=Iyaaa%20aku%20mau%20❤️" 
+                 style="text-decoration:none; background:#25d366; color:white; padding:15px 30px; border-radius:50px; font-weight:bold; display:inline-block; box-shadow: 0 10px 20px rgba(37,211,102,0.3);">
+                  <i class="fa-brands fa-whatsapp"></i> Kabari aku sekarang!
+              </a>
+          `;
+        }, 4500);
+      }
+
+      function createHearts() {
+        const heart = document.createElement("i");
+        heart.className = "fa-solid fa-heart floating-heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "105vh";
+        heart.style.fontSize = Math.random() * 20 + 10 + "px";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+
+      setInterval(createHearts, 600);
+    </script>
+  </body>
+</html>
