@@ -1063,55 +1063,74 @@
 
       /* Container QR Code */
       .qr-container {
-        margin: 20px 0 30px;
+        margin: 30px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15px; /* Jarak sedikit diperlebar agar seimbang */
+        gap: 20px;
       }
 
       .qr-wrapper {
         position: relative;
-        /* Ukuran diperbesar menjadi 180px */
-        width: 180px;
-        height: 180px;
-        background: white;
-        padding: 12px; /* Padding sedikit ditambah agar border putih lebih lega */
-        border-radius: 20px; /* Radius sedikit ditambah agar lebih lembut */
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        border: 1px solid #f1f5f9;
+        width: 240px; /* Ukuran ditingkatkan sedikit lagi */
+        height: 240px;
+        background: #ffffff;
+        padding: 10px; /* Padding lebih kecil agar area QR lebih luas secara visual */
+        border-radius: 28px;
+
+        /* Shadow dibuat lebih 'deep' agar efek floating sangat terasa */
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.12),
+          0 0 20px rgba(79, 70, 229, 0.15); /* Glow biru indigo lembut sesuai warna scan line */
+
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .qr-wrapper:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
       }
 
       .qr-image {
-        width: 100%;
-        height: 100%;
+        width: 90%; /* Memberikan sedikit whitespace di dalam agar terlihat clean */
+        height: 90%;
         object-fit: contain;
+        /* Jika gambar QR aslimu punya background poster, gunakan clip-path 
+     atau minta file QR murni tanpa teks poster di dalamnya */
       }
 
-      /* Animasi Garis Scan Tetap Konsisten */
+      /* Animasi Garis Scan yang Lebih Modern */
       .qr-scan-line {
         position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
-        height: 3px; /* Sedikit lebih tebal untuk mengimbangi ukuran besar */
+        height: 4px;
         background: linear-gradient(
-          to right,
-          transparent,
-          #4f46e5,
-          transparent
+          90deg,
+          transparent 10%,
+          #4f46e5 50%,
+          transparent 90%
         );
-        box-shadow: 0 0 10px #4f46e5;
-        animation: scanMove 2.5s linear infinite; /* Gerakan sedikit diperlambat agar lebih elegan */
+        box-shadow: 0 0 15px #4f46e5;
+        filter: blur(1px);
+        z-index: 2;
+        /* Animasi scan diperbarui agar tidak menabrak padding */
+        animation: scanMove 3s ease-in-out infinite;
       }
 
       @keyframes scanMove {
-        0% {
-          top: 0;
-        }
+        0%,
         100% {
-          top: 100%;
+          top: 5%;
+          opacity: 0.3;
+        }
+        50% {
+          top: 90%;
+          opacity: 1;
         }
       }
 
@@ -1124,6 +1143,9 @@
         display: flex;
         align-items: center;
         gap: 6px;
+      }
+      .fas {
+        margin-right: 5px;
       }
     </style>
   </head>
@@ -1175,7 +1197,7 @@
             class="modern-redirect-btn"
             onclick="closePamphlet()"
           >
-            <span>Masuk ke Website</span>
+            <span><i class="fas fa-eye"></i> Web Umum</span>
           </a>
         </div>
       </div>
