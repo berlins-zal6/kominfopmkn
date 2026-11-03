@@ -257,10 +257,10 @@
       function handleTutup() {
         window.close();
         setTimeout(() => {
-          if (document.visibilityState) {
+          if (!window.closed) {
             window.history.go(-2);
           }
-        }, 100);
+        }, 150);
       }
 
       // Logika Perhitungan Mundur (Countdown Timer)
