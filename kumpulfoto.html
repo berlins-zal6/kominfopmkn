@@ -129,14 +129,14 @@
         </div>
       </div>
 
-      <!-- BOX FORMAT Unggah -->
+      <!-- BOX KETENTUAN PENGIRIMAN -->
       <div
         class="w-full bg-[#d0dcf0]/70 border border-[#004ca3]/40 rounded-2xl p-5 mb-10 text-left min-h-[220px]"
       >
         <h3
           class="text-[#004ca3] font-extrabold text-base mb-3 flex items-center gap-1.5"
         >
-          <i class="fa-solid fa-circle-info"></i> Format Unggah Foto
+          <i class="fa-solid fa-circle-info"></i> Ketentuan Pengunggahan Foto
         </h3>
 
         <ul
@@ -145,14 +145,16 @@
           <li class="flex gap-2">
             <span class="font-bold text-[#004ca3]">1.</span>
             <span
-              >Foto Wajib Mengenakan <strong>"Baju PDH PMKN"</strong> dan pose
-              berdiri.</span
+              >Wajib mengenakan atribut resmi
+              <strong>"Baju PDH PMKN"</strong> dengan posisi berdiri
+              tegap.</span
             >
           </li>
           <li class="flex gap-2">
             <span class="font-bold text-[#004ca3] shrink-0">2.</span>
             <span
-              ><strong>Unggah Foto</strong> sesuai bidangnya:<br />
+              ><strong>Unggah berkas foto</strong> sesuai dengan bidang
+              kepengurusan masing-masing:<br />
               <code
                 class="bg-white/80 border border-slate-300 px-2 py-0.5 rounded text-[11px] text-[#004ca3] font-bold block mt-1 break-words"
               >
@@ -163,41 +165,42 @@
           <li
             class="bg-white/70 p-2.5 rounded-xl border border-blue-200 text-[11px]"
           >
-            <strong class="text-[#004ca3]">Ubah nama fotonya:</strong><br />
+            <strong class="text-[#004ca3]">Format Penamaan Berkas:</strong
+            ><br />
             BERLIN SEPTENUS ZALUKHU KOOR/ANGGOTA
           </li>
         </ul>
       </div>
 
-      <!-- TOMBOL AKSI DENGAN KETERANGAN -->
+      <!-- TOMBOL AKSI UTAMA -->
       <div class="flex items-center justify-center gap-3 w-full mb-6">
-        <!-- Tombol Upload -->
+        <!-- Tombol Unggah -->
         <a
           id="btn-drive"
           href="#"
           target="_blank"
           class="flex-1 h-14 bg-[#004ca3] hover:bg-[#00397a] text-white font-semibold rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all text-sm"
         >
-          <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Upload
+          <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Unggah
         </a>
 
-        <!-- Tombol Logout -->
+        <!-- Tombol Keluar / Kembali -->
         <button
           onclick="handleTutup()"
           title="Keluar / Kembali"
           class="flex-1 h-14 bg-white border border-[#004ca3] text-red-600 hover:bg-red-50 font-semibold rounded-xl flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all text-sm"
         >
-          <i class="fa-solid fa-right-from-bracket text-lg"></i> Logout
+          <i class="fa-solid fa-right-from-bracket text-lg"></i> Keluar
         </button>
       </div>
 
-      <!-- TAMBAHAN: Info Kontak / Bantuan -->
+      <!-- PUSAT BANTUAN LAYANAN -->
       <div
         id="box-bantuan"
         class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-4 mb-4 text-center transition-all duration-300"
       >
         <p class="text-xs text-slate-500 font-medium mb-1">
-          Mengalami kendala saat upload foto?
+          Menghadapi kendala teknis saat pengunggahan?
         </p>
         <a
           href="https://wa.me/+6282358478663"
@@ -214,7 +217,7 @@
     <footer class="w-full max-w-md px-6 text-center mt-auto">
       <div class="w-full border-t border-[#004ca3] mb-4"></div>
       <p class="text-xs text-gray-500 font-medium">
-        Create by:
+        Dikembangkan oleh:
         <a
           href="https://berlins-zal6.github.io/profileq/"
           target="_blank"
@@ -225,11 +228,11 @@
       </p>
     </footer>
 
-    <!-- SCRIPT LOGIKA, TANGGAL & TIMER -->
+    <!-- SCRIPT LOGIKA WAKTU DAN SISTEM -->
     <script>
       const DATA_TUGAS = {
         nama: "Pengumpulan Foto BPH PMKN 2026/2027",
-        deadline: "2026-11-03T23:59:00",
+        deadline: "2026-11-05T23:59:00",
         linkDrive:
           "https://drive.google.com/drive/folders/1ig6gW0HLG6GFG4jmBYzCd5sYMti8ZGya?usp=sharing",
       };
@@ -237,7 +240,7 @@
       document.getElementById("nama-tugas").innerText = DATA_TUGAS.nama;
       document.getElementById("btn-drive").href = DATA_TUGAS.linkDrive;
 
-      // Set Tampilan Tanggal Deadline Berdasarkan Settingan variabel
+      // Pengaturan Format Penanggalan Akademik
       const deadlineDate = new Date(DATA_TUGAS.deadline);
       const options = {
         day: "numeric",
@@ -247,20 +250,20 @@
         minute: "2-digit",
       };
       document.getElementById("tgl-deadline").innerText =
-        "Batas: " +
+        "Batas Waktu: " +
         deadlineDate.toLocaleDateString("id-ID", options).replace(".", ":");
 
-      // Fungsi Tombol Tutup / Logout
+      // Fungsi Navigasi Mundur (Kembali ke 2 Halaman Sebelumnya)
       function handleTutup() {
         window.close();
         setTimeout(() => {
           if (document.visibilityState) {
-            window.history.back();
+            window.history.go(-2);
           }
         }, 100);
       }
 
-      // Logika Countdown Timer
+      // Logika Perhitungan Mundur (Countdown Timer)
       function updateTimer() {
         const now = new Date().getTime();
         const target = deadlineDate.getTime();
@@ -272,9 +275,9 @@
           document.getElementById("menit").innerText = "00";
           document.getElementById("detik").innerText = "00";
           document.getElementById("tgl-deadline").innerText =
-            "Status: Waktu Pengumpulan Telah Berakhir";
+            "Status: Periode Pengumpulan Telah Ditutup";
 
-          // 1. Ubah warna teks timer serentak jadi merah
+          // 1. Mengubah seluruh indikator waktu menjadi warna merah
           ["hari", "jam", "menit", "detik"].forEach((id) => {
             const el = document.getElementById(id);
             el.className =
@@ -287,7 +290,7 @@
             },
           );
 
-          // 2. Tombol Upload jadi pudar dan tidak bisa diklik
+          // 2. Menonaktifkan tombol unggah secara permanen saat waktu habis
           const btnDrive = document.getElementById("btn-drive");
           btnDrive.classList.add(
             "opacity-50",
@@ -296,7 +299,7 @@
           );
           btnDrive.removeAttribute("href");
 
-          // 3. Kotak Bantuan Hubungi Kominfo berkedip-kedip (animate-pulse)
+          // 3. Memberikan efek kedip (pulse) pada kotak pusat bantuan
           document
             .getElementById("box-bantuan")
             .classList.add("animate-pulse", "border-red-400", "bg-red-50/50");
