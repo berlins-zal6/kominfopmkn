@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumpulan Foto BPH PMKN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+      body {
+        background-color: #ffffff;
+        color: #0f172a;
+        font-family: "Poppins", sans-serif;
+      }
+      .count-font {
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen bg-white flex flex-col items-center justify-between pb-6 select-none"
+  >
+    <!-- HEADER / NAVBAR ATAS -->
+    <header
+      class="w-full bg-white shadow-sm rounded-b-[2.5rem] border-b border-gray-100 px-6 py-4 flex items-center gap-4 mb-6"
+    >
+      <!-- LOGO ELLIPSE PERANGKAT -->
+      <div
+        class="w-14 h-14 rounded-full bg-gray-300 flex-shrink-0 overflow-hidden border border-gray-200"
+      >
+        <img
+          src="logo kominfo.png"
+          alt="Logo Perangkat"
+          class="w-full h-full object-cover hidden"
+          id="logo-img"
+          onload="this.classList.remove('hidden')"
+        />
+      </div>
+      <span class="text-2xl font-extrabold text-[#004ca3] tracking-tight"
+        >Pubdok</span
+      >
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main
+      class="w-full max-w-md px-6 flex-1 flex flex-col items-center text-center"
+    >
+      <!-- JUDUL UTAMA -->
+      <h1
+        id="nama-tugas"
+        class="text-2xl sm:text-3xl font-extrabold text-black tracking-tight leading-snug max-w-xs"
+      >
+        Pengumpulan Foto BPH PMKN 2026/2027
+      </h1>
+
+      <!-- TANGGAL DEADLINE DINAMIS -->
+      <p
+        id="tgl-deadline"
+        class="text-red-500 text-xs font-semibold italic mt-2 mb-8"
+      >
+        Memuat batas waktu...
+      </p>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="grid grid-cols-4 gap-3 w-full max-w-xs mb-8">
+        <!-- HARI -->
+        <div
+          class="bg-white p-3 rounded-2xl border border-gray-200 shadow-md flex flex-col items-center justify-center"
+        >
+          <div
+            id="hari"
+            class="text-3xl font-extrabold text-[#004ca3] count-font leading-none mb-1"
+          >
+            00
+          </div>
+          <div id="label-hari" class="text-[10px] text-[#004ca3] font-semibold">
+            Hari
+          </div>
+        </div>
+        <!-- JAM -->
+        <div
+          class="bg-white p-3 rounded-2xl border border-gray-200 shadow-md flex flex-col items-center justify-center"
+        >
+          <div
+            id="jam"
+            class="text-3xl font-extrabold text-[#004ca3] count-font leading-none mb-1"
+          >
+            00
+          </div>
+          <div id="label-jam" class="text-[10px] text-[#004ca3] font-semibold">
+            Jam
+          </div>
+        </div>
+        <!-- MENIT -->
+        <div
+          class="bg-white p-3 rounded-2xl border border-gray-200 shadow-md flex flex-col items-center justify-center"
+        >
+          <div
+            id="menit"
+            class="text-3xl font-extrabold text-[#004ca3] count-font leading-none mb-1"
+          >
+            00
+          </div>
+          <div
+            id="label-menit"
+            class="text-[10px] text-[#004ca3] font-semibold"
+          >
+            Menit
+          </div>
+        </div>
+        <!-- DETIK -->
+        <div
+          class="bg-white p-3 rounded-2xl border border-gray-200 shadow-md flex flex-col items-center justify-center"
+        >
+          <div
+            id="detik"
+            class="text-3xl font-extrabold text-red-600 count-font leading-none mb-1"
+          >
+            00
+          </div>
+          <div id="label-detik" class="text-[10px] text-red-600 font-semibold">
+            Detik
+          </div>
+        </div>
+      </div>
+
+      <!-- BOX FORMAT Unggah -->
+      <div
+        class="w-full bg-[#d0dcf0]/70 border border-[#004ca3]/40 rounded-2xl p-5 mb-10 text-left min-h-[220px]"
+      >
+        <h3
+          class="text-[#004ca3] font-extrabold text-base mb-3 flex items-center gap-1.5"
+        >
+          <i class="fa-solid fa-circle-info"></i> Format Unggah Foto
+        </h3>
+
+        <ul
+          class="text-xs text-slate-700 space-y-2.5 leading-relaxed font-medium"
+        >
+          <li class="flex gap-2">
+            <span class="font-bold text-[#004ca3]">1.</span>
+            <span
+              >Foto Wajib Mengenakan <strong>"Baju PDH PMKN"</strong> dan pose
+              berdiri.</span
+            >
+          </li>
+          <li class="flex gap-2">
+            <span class="font-bold text-[#004ca3] shrink-0">2.</span>
+            <span
+              ><strong>Unggah Foto</strong> sesuai bidangnya:<br />
+              <code
+                class="bg-white/80 border border-slate-300 px-2 py-0.5 rounded text-[11px] text-[#004ca3] font-bold block mt-1 break-words"
+              >
+                BPI, Kerohanian, BPOK, Kewirausahaan, Mikat, Kominfo
+              </code>
+            </span>
+          </li>
+          <li
+            class="bg-white/70 p-2.5 rounded-xl border border-blue-200 text-[11px]"
+          >
+            <strong class="text-[#004ca3]">Ubah nama fotonya:</strong><br />
+            BERLIN SEPTENUS ZALUKHU KOOR/ANGGOTA
+          </li>
+        </ul>
+      </div>
+
+      <!-- TOMBOL AKSI DENGAN KETERANGAN -->
+      <div class="flex items-center justify-center gap-3 w-full mb-6">
+        <!-- Tombol Upload -->
+        <a
+          id="btn-drive"
+          href="#"
+          target="_blank"
+          class="flex-1 h-14 bg-[#004ca3] hover:bg-[#00397a] text-white font-semibold rounded-xl flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all text-sm"
+        >
+          <i class="fa-solid fa-cloud-arrow-up text-lg"></i> Upload
+        </a>
+
+        <!-- Tombol Logout -->
+        <button
+          onclick="handleTutup()"
+          title="Keluar / Kembali"
+          class="flex-1 h-14 bg-white border border-[#004ca3] text-red-600 hover:bg-red-50 font-semibold rounded-xl flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all text-sm"
+        >
+          <i class="fa-solid fa-right-from-bracket text-lg"></i> Logout
+        </button>
+      </div>
+
+      <!-- TAMBAHAN: Info Kontak / Bantuan -->
+      <div
+        id="box-bantuan"
+        class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-4 mb-4 text-center transition-all duration-300"
+      >
+        <p class="text-xs text-slate-500 font-medium mb-1">
+          Mengalami kendala saat upload foto?
+        </p>
+        <a
+          href="https://wa.me/+6282358478663"
+          target="_blank"
+          class="inline-flex items-center gap-1.5 text-xs font-bold text-[#004ca3] hover:underline"
+        >
+          <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Hubungi
+          Kominfo PMKN
+        </a>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full max-w-md px-6 text-center mt-auto">
+      <div class="w-full border-t border-[#004ca3] mb-4"></div>
+      <p class="text-xs text-gray-500 font-medium">
+        Create by:
+        <a
+          href="https://berlins-zal6.github.io/profileq/"
+          target="_blank"
+          class="text-[#004ca3] font-extrabold hover:underline"
+        >
+          berlin zal
+        </a>
+      </p>
+    </footer>
+
+    <!-- SCRIPT LOGIKA, TANGGAL & TIMER -->
+    <script>
+      const DATA_TUGAS = {
+        nama: "Pengumpulan Foto BPH PMKN 2026/2027",
+        deadline: "2026-11-03T23:59:00",
+        linkDrive:
+          "https://drive.google.com/drive/folders/1ig6gW0HLG6GFG4jmBYzCd5sYMti8ZGya?usp=sharing",
+      };
+
+      document.getElementById("nama-tugas").innerText = DATA_TUGAS.nama;
+      document.getElementById("btn-drive").href = DATA_TUGAS.linkDrive;
+
+      // Set Tampilan Tanggal Deadline Berdasarkan Settingan variabel
+      const deadlineDate = new Date(DATA_TUGAS.deadline);
+      const options = {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+      document.getElementById("tgl-deadline").innerText =
+        "Batas: " +
+        deadlineDate.toLocaleDateString("id-ID", options).replace(".", ":");
+
+      // Fungsi Tombol Tutup / Logout
+      function handleTutup() {
+        window.close();
+        setTimeout(() => {
+          if (document.visibilityState) {
+            window.history.back();
+          }
+        }, 100);
+      }
+
+      // Logika Countdown Timer
+      function updateTimer() {
+        const now = new Date().getTime();
+        const target = deadlineDate.getTime();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          document.getElementById("hari").innerText = "00";
+          document.getElementById("jam").innerText = "00";
+          document.getElementById("menit").innerText = "00";
+          document.getElementById("detik").innerText = "00";
+          document.getElementById("tgl-deadline").innerText =
+            "Status: Waktu Pengumpulan Telah Berakhir";
+
+          // 1. Ubah warna teks timer serentak jadi merah
+          ["hari", "jam", "menit", "detik"].forEach((id) => {
+            const el = document.getElementById(id);
+            el.className =
+              "text-3xl font-extrabold text-red-600 count-font leading-none mb-1";
+          });
+          ["label-hari", "label-jam", "label-menit", "label-detik"].forEach(
+            (id) => {
+              const el = document.getElementById(id);
+              el.className = "text-[10px] text-red-600 font-semibold";
+            },
+          );
+
+          // 2. Tombol Upload jadi pudar dan tidak bisa diklik
+          const btnDrive = document.getElementById("btn-drive");
+          btnDrive.classList.add(
+            "opacity-50",
+            "pointer-events-none",
+            "cursor-not-allowed",
+          );
+          btnDrive.removeAttribute("href");
+
+          // 3. Kotak Bantuan Hubungi Kominfo berkedip-kedip (animate-pulse)
+          document
+            .getElementById("box-bantuan")
+            .classList.add("animate-pulse", "border-red-400", "bg-red-50/50");
+
+          return;
+        }
+
+        const hari = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const jam = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const menit = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const detik = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("hari").innerText = hari
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("jam").innerText = jam
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("menit").innerText = menit
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("detik").innerText = detik
+          .toString()
+          .padStart(2, "0");
+      }
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    </script>
+  </body>
+</html>
